@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<widget id="widget.Reverse" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
-    <name>ReverseWidget</name>
+<widget id="widget.DaysLeft" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>DaysLeft</name>
     <description>The description of this widget.</description>
 
      <properties>

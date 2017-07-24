@@ -6,7 +6,7 @@ import * as dojoStyle from "dojo/dom-style";
 import * as dojoHtml from "dojo/html";
 import * as dom from "dojo/dom";
 
-class Reverse extends WidgetBase {
+class DaysLeft extends WidgetBase {
 
     // Parameters configured in modeler
    // insertText: string;
@@ -83,7 +83,7 @@ class Reverse extends WidgetBase {
         return testValue.split("").reverse().join("");
     }
 }
-dojoDeclare("widget.Reverse", [ WidgetBase ], function(Source: any) {
+dojoDeclare("widget.DaysLeft", [ WidgetBase ], function(Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
@@ -91,4 +91,4 @@ dojoDeclare("widget.Reverse", [ WidgetBase ], function(Source: any) {
         }
     }
     return result;
-}(Reverse));
+}(DaysLeft));
