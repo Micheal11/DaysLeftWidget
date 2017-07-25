@@ -17,5 +17,27 @@
             <category>Behavior</category>
             <description>This is an entity</description>
         </property>
+        <property key="insertText" type="attribute" >
+            <caption>Reverse String</caption>
+            <category>Data Source</category>
+            <description>A string to be reversed</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+        <!--
+        <property key="mfToExecute" type="microflow" required="false" defaultValue="">
+            <caption>Microflow</caption>
+            <category>Behavior</category>
+            <description>The microflow to execute on click.</description>
+            <returnType type="Boolean" />
+        </property>
+
+        <property key="dateInsertion" type="entity" required="false" defaultValue="">
+            <caption>Entity</caption>
+            <category>Behavior</category>
+            <description>This is an entity</description>
+        </property>-->
+
     </properties>
 </widget>

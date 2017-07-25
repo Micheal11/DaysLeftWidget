@@ -4,7 +4,15 @@
     <description>The widget returns the number of days remaining to reach a particular date that is inserted</description>
 
      <properties>
-     <property key="Date" type="attribute" entityProperty="dateInsertion" required="false" >
+        <property key="insertText" type="attribute" entityProperty="reverseEntity" >
+            <caption>Reverse String</caption>
+            <category>Data Source</category>
+            <description>A string to be reversed</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+        <property key="Date" type="attribute" entityProperty="dateInsertion" >
             <caption>Date input</caption>
             <category>Data Source</category>
             <description>The date required return the number of remaining days</description>
@@ -12,10 +20,18 @@
                 <attributeType name="String" />
             </attributeTypes>
         </property>
+        <property key="mfToExecute" type="microflow" required="false" defaultValue="">
+            <caption>Microflow</caption>
+            <category>Behavior</category>
+            <description>The microflow to execute on click.</description>
+            <returnType type="Boolean" />
+        </property>
+
         <property key="dateInsertion" type="entity" required="false" defaultValue="">
             <caption>Entity</caption>
             <category>Behavior</category>
             <description>This is an entity</description>
         </property>
+
     </properties>
 </widget>
