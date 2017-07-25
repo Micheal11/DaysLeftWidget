@@ -10,7 +10,6 @@ class DaysLeft extends WidgetBase {
     mfToExecute: string;
     insertText: string;
     reverseEntity: string;
-    dateInsertion: Date;
 
     
     private contextObject: mendix.lib.MxObject;
