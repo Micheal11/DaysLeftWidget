@@ -60,7 +60,7 @@ class DaysLeft extends WidgetBase {
             callback: (obj: mendix.lib.MxObject) => {
                 this.input = dom.byId("name");
                 obj.set(this.insertText, this.input.value);
-                this.saveTag(obj);
+                this.saveDate(obj);
                 // console.log("Object created on server");
             },
             entity: this.reverseEntity,
@@ -69,7 +69,7 @@ class DaysLeft extends WidgetBase {
             }
         });
     }
-    private saveTag(contextObject: any, callback?: () => void) {
+    private saveDate(contextObject: any, callback?: () => void) {
         mx.data.commit({
             callback: () => {
                 // console.log("Object committed");
