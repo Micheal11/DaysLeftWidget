@@ -26,24 +26,21 @@ class DaysLeft extends WidgetBase {
         }
     }
     private customize() {
-        domConstruct.create("div", {
-            innerHTML: "<br/>"
+        domConstruct.create("div",{
+            id: "outer-div"
         }, this.domNode);
-        domConstruct.create("input", {
-            class: "buttonOne",
-            id: "Name",
-            type: "button",
-            value: "save"
-        }, this.domNode).addEventListener("click", () => {
-            this.createEvent();
-        }, false);
-        domConstruct.create("input", {
-            class: "buttonTwo",
-            type: "button",
-            value: "Cancel"
-        }, this.domNode).addEventListener("click", () => {
-            this.uninitialize();
-        }, false);
+
+        domConstruct.create("div",{
+            id: "top-div",
+            innerHTML: "<span>top-div</span>"
+        }, dom.byId("outer-div"));
+
+        domConstruct.create("div",{
+            id: "bottom-div",
+            innerHTML: "<span>bottom-div</span>"
+        }, dom.byId("outer-div"));
+
+
     }
     updateRendering() {
         if (this.contextObject) {
@@ -57,7 +54,7 @@ class DaysLeft extends WidgetBase {
         mx.data.create({
             callback: (obj: mendix.lib.MxObject) => {
                 this.input = dom.byId("Name");
-                obj.set(this.Name, this.input);
+                obj.set(this.Name, this.input.value);
                 this.saveEvent(obj);
                 // console.log("Object created on server");
             },

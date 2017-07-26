@@ -56,8 +56,8 @@ class DaysLeft extends WidgetBase {
     private createEvent(): void {
         mx.data.create({
             callback: (obj: mendix.lib.MxObject) => {
-                this.input = dom.byId("Name");
-                obj.set(this.Name, this.input);
+                // this.input = dom.byId("Name");
+                obj.set("sam", this.Name);
                 this.saveEvent(obj);
                 // console.log("Object created on server");
             },

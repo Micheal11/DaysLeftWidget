@@ -37,6 +37,9 @@ class DaysLeft extends WidgetBase {
         }, this.domNode).addEventListener("click", () => {
             this.createEvent();
         }, false);
+        domConstruct.create("div", {
+            innerHTML: "<br/>"
+        }, this.domNode
         domConstruct.create("input", {
             class: "buttonTwo",
             type: "button",
@@ -57,7 +60,7 @@ class DaysLeft extends WidgetBase {
         mx.data.create({
             callback: (obj: mendix.lib.MxObject) => {
                 this.input = dom.byId("Name");
-                obj.set(this.Name, this.input);
+                obj.set(this.Name, this.input.value);
                 this.saveEvent(obj);
                 // console.log("Object created on server");
             },
