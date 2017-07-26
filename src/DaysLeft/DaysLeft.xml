@@ -508,28 +508,34 @@ VH0qPpUfWo+jR9Oj69H06PrUfWo+px9Sj6DH1ePq8fUY+ox9Bi/4MfVY+rw/5WPpEfWo+lR9ch/x
 0a4HekXMq1uprH0qPrUKfBj6RH0OPokfR4+rx9Dj6nH1OPqcfU4+px9Tj6nH1OPqcfU4+px9Tj6n
 H1OPqcfU4+px9Tj6nH1OPqcfU4+px9Tj6nH1OAd21PYCP//Z
 </icon>
-     <properties>
-     <property key="Deadline" type="entity" required="false" defaultValue="">
+    <properties>
+    <property key="Deadline" type="entity" required="false" defaultValue="">
             <caption>Entity</caption>
             <category>Behavior</category>
             <description>This is an entity</description>
-    </property>
-     <property key="Name" type="attribute" entityProperty="Deadline" required="false" >
+        </property>
+        <property key="Name" type="attribute" entityProperty="Deadline" required="false" >
             <caption>Event input</caption>
             <category>Data Source</category>
             <description>This is the name of the event</description>
             <attributeTypes>
                 <attributeType name="String" />
             </attributeTypes>
-     </property>
-     <property key="Date" type="attribute" entityProperty="Deadline" required="true" >
+        </property>
+        <property key="Date" type="attribute" entityProperty="Deadline" required="true" >
             <caption>Date Attribute</caption>
             <category>Data Source</category>
             <description>This is the Date of the event</description>
             <attributeTypes>
                 <attributeType name="DateTime" />
-        </attributeTypes>
+            </attributeTypes>
         </property>
-        
+        </property>
+            <property key="MicroflowToRun" type="microflow" required="true" defaultValue="">
+            <caption>Microflow</caption>
+            <category>Behavior</category>
+            <description>The microflow to execute on click.</description>
+            <returnType type="Boolean" />
+        </property>
     </properties>
 </widget>
