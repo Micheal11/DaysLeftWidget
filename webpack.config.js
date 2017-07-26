@@ -30,7 +30,7 @@ module.exports = {
         ], {
             copyUnmodified: true
         }),
-        // new ExtractTextPlugin("./src/widget/cropimage/ui/CropImage.css"),
+         new ExtractTextPlugin("./src/DaysLeft.css"),
         new webpack.LoaderOptionsPlugin({
             debug: true
         })

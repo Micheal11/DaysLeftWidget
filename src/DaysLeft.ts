@@ -5,12 +5,15 @@ import * as dojoClass from "dojo/dom-class";
 import * as dojoStyle from "dojo/dom-style";
 import * as dojoHtml from "dojo/html";
 import * as dom from "dojo/dom";
+import "./DaysLeft.css";
+// import daysLeft = require("DaysLeft.css");
 
 class DaysLeft extends WidgetBase {
-      dateInsertion: Date;
-      mfToExecute: string;
-  
+    Date: Date;
+    Name: string;
+    public Deadline: any;
     private contextObject: mendix.lib.MxObject;
+    private input: any;
 
     postCreate() {
         this.customize();
@@ -28,56 +31,53 @@ class DaysLeft extends WidgetBase {
             innerHTML: "<br/>"
         }, this.domNode);
         domConstruct.create("input", {
-             id: "name",
-            textValue: "Insert a date",
-            type: "date"
-        }, this.domNode);
-        domConstruct.create("input", {
             class: "buttonOne",
+            id: "Name",
             type: "button",
             value: "save"
         }, this.domNode).addEventListener("click", () => {
-            this.createDate();
+            this.createEvent();
         }, false);
         domConstruct.create("input", {
             class: "buttonTwo",
             type: "button",
-            value: "cancel"
+            value: "Cancel"
         }, this.domNode).addEventListener("click", () => {
             this.uninitialize();
         }, false);
-        }
+    }
     updateRendering() {
         if (this.contextObject) {
             domConstruct.empty(this.domNode);
-             this.customize();
+            this.customize();
         } else {
-            }
+            // comment
+        }
     }
-    private createDate(): void {
+    private createEvent(): void {
         mx.data.create({
             callback: (obj: mendix.lib.MxObject) => {
-                this.input = dom.byId("name");
-                obj.set(this.insertText, this.input.value);
-                this.saveDate(obj);
+                this.input = dom.byId("Name");
+                obj.set(this.Name, this.input.value);
+                this.saveEvent(obj);
                 // console.log("Object created on server");
             },
-            entity: this.reverseEntity,
+            entity: this.Deadline,
             error: (errors) => {
                 // console.log("an error occured: " + errors);
             }
         });
     }
-    private saveDate(contextObject: any, callback?: () => void) {
+    private saveEvent(contextObject: any, callback?: () => void) {
         mx.data.commit({
             callback: () => {
                 // console.log("Object committed");
             },
             mxobj: contextObject
         });
-    }  
+    }
 }
-dojoDeclare("widget.DaysLeft", [ WidgetBase ], function(Source: any) {
+dojoDeclare("widget.DaysLeft", [ WidgetBase ], function (Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
