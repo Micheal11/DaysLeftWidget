@@ -522,13 +522,13 @@ H1OPqcfU4+px9Tj6nH1OPqcfU4+px9Tj6nH1OAd21PYCP//Z
                 <attributeType name="String" />
             </attributeTypes>
      </property>
-     <property key="Date" type="attribute" entityProperty="Deadline" required="true" >
+     <property key="Date" type="DateTime" entityProperty="Deadline" required="true" >
             <caption>Date Attribute</caption>
             <category>Data Source</category>
             <description>This is the Date of the event</description>
-            <attributeTypes>
-                <attributeType name="DateTime" />
-        </attributeTypes>
+        <!--    <attributeTypes>
+                <attributeType name="String" />
+        </attributeTypes>-->
         </property>
         
     </properties>
