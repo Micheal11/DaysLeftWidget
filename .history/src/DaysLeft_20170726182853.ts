@@ -6,7 +6,6 @@ import * as dojoStyle from "dojo/dom-style";
 import * as dojoHtml from "dojo/html";
 import * as dom from "dojo/dom";
 import "./DaysLeft.css";
-// import daysLeft = require("DaysLeft.css");
 
 class DaysLeft extends WidgetBase {
     Date: Date;
@@ -76,8 +75,16 @@ class DaysLeft extends WidgetBase {
             mxobj: contextObject
         });
     }
+    computeDays(FirstDate: number, SecondDate: number): number {
+        if (FirstDate < SecondDate)
+            return (SecondDate - FirstDate);
+        else if (FirstDate === SecondDate)
+            return 0;
+        else
+            return (FirstDate - SecondDate);
+    }
 }
-dojoDeclare("widget.DaysLeft", [ WidgetBase ], function (Source: any) {
+dojoDeclare("widget.DaysLeft", [ WidgetBase ], function(Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<widget id="widget.DaysLeft" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+<widget id="DaysLeft.widget.DaysLeft" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
     <name>DaysLeft</name>
     <description>The widget returns the number of days remaining to reach a particular date that is inserted</description>
 <icon>/9j/4AAQSkZJRgABAgAAAQABAAD/7QCcUGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAIAcAmcAFDZj
