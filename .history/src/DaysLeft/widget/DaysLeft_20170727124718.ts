@@ -36,17 +36,11 @@ class DaysLeft extends WidgetBase {
             textValue: "Insert any string",
             type: "text"
         }, this.domNode);
-        domConstruct.create("div", {
-            innerHTML: "<br/>"
-        }, this.domNode);
         domConstruct.create("input", {
             class: "Date-Of-Event",
             id: "name",
             textValue: "Insert any string",
-            type: "date"
-        }, this.domNode);
-        domConstruct.create("div", {
-            innerHTML: "<br/>"
+            type: "text"
         }, this.domNode);
         domConstruct.create("input", {
             class: "buttonOne",
@@ -96,6 +90,14 @@ class DaysLeft extends WidgetBase {
             mxobj: contextObject
         });
     }
+    // computeDays(FirstDate: number, SecondDate: number): number {
+    //     if (FirstDate < SecondDate)
+    //         return (SecondDate - FirstDate);
+    //     else if (FirstDate === SecondDate)
+    //         return 0;
+    //     else
+    //         return (FirstDate - SecondDate);
+    // }
     private ExecuteMicroflow(mf: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
         if (mf && guid) {
             mx.ui.action(mf, {
