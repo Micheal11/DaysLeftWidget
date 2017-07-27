@@ -15,12 +15,11 @@ class DaysLeft extends WidgetBase {
     private contextObject: mendix.lib.MxObject;
     private input: string;
     private dateInput: string;
-    private currentDay: number;
 
     displayDate: string;
 
     postCreate() {
-        this.customize();
+         this.customize();
     }
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
@@ -58,7 +57,6 @@ class DaysLeft extends WidgetBase {
             type: "button",
             value: "save"
         }, this.domNode).addEventListener("click", () => {
-            this.calculateDaysLeft();
             this.createEvent();
         }, false);
         domConstruct.create("input", {
@@ -86,10 +84,9 @@ class DaysLeft extends WidgetBase {
     }
 
     private calculateDaysLeft(): number {
-        dom.byId("DateName").value;
+        dom.byId("daysHtml").value;
         this.displayDate = new Date().toLocaleDateString();
-        this.currentDay = parseInt(this.displayDate.split("/")[1], 0);
-        alert(parseInt(dom.byId("DateName").value.split("-")[1], 0) - parseInt(this.displayDate.split("/")[1], 0));
+        alert(this.displayDate);
 
         return 0;
     }
@@ -126,7 +123,7 @@ class DaysLeft extends WidgetBase {
                 },
                 params: {
                     applyto: "selection",
-                    guids: [guid]
+                    guids: [ guid ]
                 },
                 error: (error) => {
                     // console.debug(error.description);
@@ -135,7 +132,7 @@ class DaysLeft extends WidgetBase {
         }
     }
 }
-dojoDeclare("DaysLeft.widget.DaysLeft", [WidgetBase], function (Source: any) {
+dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function (Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
