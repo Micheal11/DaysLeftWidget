@@ -66,10 +66,6 @@ class DaysLeft extends WidgetBase {
                 this.ExecuteMicroflow(this.MicroflowToRun, this.contextObject.getGuid());
             }
         });
-        domConstruct.create("div", {
-            class: "days-left-widget",
-            innerHTML: "<span> Event </span>"
-        }, this.domNode);
     }
     updateRendering() {
         if (this.contextObject) {
@@ -80,12 +76,12 @@ class DaysLeft extends WidgetBase {
         }
     }
 
-    private calculateDaysLeft(): number {
-        dom.byId("DateName").value;
+    /*private calculateDaysLeft(): number {
+        dom.byId("DateName").value
         // currentDate
         // TODO function for days left
         return 0;
-    }
+    }*/
 
     private createEvent(): void {
         mx.data.create({

@@ -66,10 +66,6 @@ class DaysLeft extends WidgetBase {
                 this.ExecuteMicroflow(this.MicroflowToRun, this.contextObject.getGuid());
             }
         });
-        domConstruct.create("div", {
-            class: "days-left-widget",
-            innerHTML: "<span> Event </span>"
-        }, this.domNode);
     }
     updateRendering() {
         if (this.contextObject) {
@@ -79,14 +75,10 @@ class DaysLeft extends WidgetBase {
             // comment
         }
     }
-
     private calculateDaysLeft(): number {
-        dom.byId("DateName").value;
-        // currentDate
-        // TODO function for days left
+        //TODO function for days left
         return 0;
     }
-
     private createEvent(): void {
         mx.data.create({
             callback: (obj: mendix.lib.MxObject) => {
@@ -128,7 +120,7 @@ class DaysLeft extends WidgetBase {
         }
     }
 }
-dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function (Source: any) {
+dojoDeclare("DaysLeft.widget.DaysLeft", [WidgetBase], function (Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {

@@ -69,7 +69,7 @@ class DaysLeft extends WidgetBase {
         domConstruct.create("div", {
             class: "days-left-widget",
             innerHTML: "<span> Event </span>"
-        }, this.domNode);
+        },this.domNode);
     }
     updateRendering() {
         if (this.contextObject) {

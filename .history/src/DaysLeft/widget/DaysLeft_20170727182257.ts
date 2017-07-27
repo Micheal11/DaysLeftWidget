@@ -66,10 +66,6 @@ class DaysLeft extends WidgetBase {
                 this.ExecuteMicroflow(this.MicroflowToRun, this.contextObject.getGuid());
             }
         });
-        domConstruct.create("div", {
-            class: "days-left-widget",
-            innerHTML: "<span> Event </span>"
-        }, this.domNode);
     }
     updateRendering() {
         if (this.contextObject) {

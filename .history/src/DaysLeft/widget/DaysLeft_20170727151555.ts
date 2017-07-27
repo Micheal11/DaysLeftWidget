@@ -43,7 +43,7 @@ class DaysLeft extends WidgetBase {
         domConstruct.create("input", {
             class: "Date-Of-Event",
             id: "DateName",
-            textValue: "Input date",
+            textValue: "Insert any string",
             type: "date"
         }, this.domNode);
         domConstruct.create("div", {
@@ -51,11 +51,12 @@ class DaysLeft extends WidgetBase {
         }, this.domNode);
         domConstruct.create("input", {
             class: "buttonOne",
-            id: "Namek",
+            id: "Name",
             type: "button",
             value: "save"
         }, this.domNode).addEventListener("click", () => {
             this.createEvent();
+            this.createDate();
         }, false);
         domConstruct.create("input", {
             class: "buttonTwo",
@@ -66,10 +67,6 @@ class DaysLeft extends WidgetBase {
                 this.ExecuteMicroflow(this.MicroflowToRun, this.contextObject.getGuid());
             }
         });
-        domConstruct.create("div", {
-            class: "days-left-widget",
-            innerHTML: "<span> Event </span>"
-        }, this.domNode);
     }
     updateRendering() {
         if (this.contextObject) {
@@ -79,19 +76,13 @@ class DaysLeft extends WidgetBase {
             // comment
         }
     }
-
-    private calculateDaysLeft(): number {
-        dom.byId("DateName").value;
-        // currentDate
-        // TODO function for days left
-        return 0;
-    }
-
     private createEvent(): void {
         mx.data.create({
             callback: (obj: mendix.lib.MxObject) => {
+                // this.input = dom.byId("EventName");
                 obj.set(this.Name, dom.byId("EventName").value);
-                obj.set(this.Date, dom.byId("DateName").value);
+                // this.dateInput = dom.byId("DateName");
+               // obj.set(this.Date, dom.byId("DateName").value);
                 this.saveEvent(obj);
                 console.log("Object created on server");
             },
@@ -102,6 +93,30 @@ class DaysLeft extends WidgetBase {
         });
     }
     private saveEvent(contextObject: any, callback?: () => void) {
+        mx.data.commit({
+            callback: () => {
+                console.log("Object committed");
+            },
+            mxobj: contextObject
+        });
+    }
+    private createDate(): void {
+        mx.data.create({
+            callback: (obj: mendix.lib.MxObject) => {
+                // this.input = dom.byId("EventName");
+                obj.set(this.Date, dom.byId("DateName").value);
+                // this.dateInput = dom.byId("DateName");
+               // obj.set(this.Date, dom.byId("DateName").value);
+                this.saveDate(obj);
+                console.log("Object created on server");
+            },
+            entity: this.Deadline,
+            error: (errors) => {
+                console.log("an error occured: " + errors);
+            }
+        });
+    }
+    private saveDate(contextObject: any, callback?: () => void) {
         mx.data.commit({
             callback: () => {
                 console.log("Object committed");
@@ -128,7 +143,7 @@ class DaysLeft extends WidgetBase {
         }
     }
 }
-dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function (Source: any) {
+dojoDeclare("DaysLeft.widget.DaysLeft", [WidgetBase], function (Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
