@@ -124,12 +124,12 @@ class DaysLeft extends WidgetBase {
                         cb(objs);
                     }
                 },
-                error: (error) => {
-                    // console.debug(error.description);
-                },
                 params: {
                     applyto: "selection",
                     guids: [ guid ]
+                },
+                error: (error) => {
+                    // console.debug(error.description);
                 }
             }, this);
         }
