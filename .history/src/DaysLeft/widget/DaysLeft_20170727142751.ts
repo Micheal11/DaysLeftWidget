@@ -13,8 +13,8 @@ class DaysLeft extends WidgetBase {
     MicroflowToRun: string;
     public Deadline: any;
     private contextObject: mendix.lib.MxObject;
-    private input: string;
-    private dateInput: string;
+    private input: any;
+    private dateInput: any;
 
     postCreate() {
         this.customize();
@@ -79,10 +79,10 @@ class DaysLeft extends WidgetBase {
     private createEvent(): void {
         mx.data.create({
             callback: (obj: mendix.lib.MxObject) => {
-                // this.input = dom.byId("EventName");
-                obj.set(this.Name, dom.byId("EventName").value);
-                // this.dateInput = dom.byId("DateName");
-                obj.set(this.Date, dom.byId("DateName").value);
+                this.input = dom.byId("EventName");
+                obj.set(this.Name, this.input.value);
+                this.dateInput = dom.byId("DateName")
+                obj.set(this.Date, this.dateInput.value);
                 this.saveEvent(obj);
                 // console.log("Object created on server");
             },

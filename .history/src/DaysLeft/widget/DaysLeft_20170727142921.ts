@@ -13,8 +13,8 @@ class DaysLeft extends WidgetBase {
     MicroflowToRun: string;
     public Deadline: any;
     private contextObject: mendix.lib.MxObject;
-    private input: string;
-    private dateInput: string;
+    private input: any;
+    private dateInput: any;
 
     postCreate() {
         this.customize();

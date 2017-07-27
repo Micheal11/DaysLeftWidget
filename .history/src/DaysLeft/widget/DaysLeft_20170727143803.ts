@@ -13,8 +13,8 @@ class DaysLeft extends WidgetBase {
     MicroflowToRun: string;
     public Deadline: any;
     private contextObject: mendix.lib.MxObject;
-    private input: string;
-    private dateInput: string;
+    private input: any;
+    private dateInput: any;
 
     postCreate() {
         this.customize();
@@ -69,12 +69,13 @@ class DaysLeft extends WidgetBase {
         });
     }
     updateRendering() {
-        if (this.contextObject) {
+        /*if (this.contextObject) {
             domConstruct.empty(this.domNode);
             this.customize();
         } else {
             // comment
-        }
+        }*/
+        this.customize();
     }
     private createEvent(): void {
         mx.data.create({

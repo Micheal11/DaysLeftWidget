@@ -8,13 +8,12 @@ import * as dom from "dojo/dom";
 import "./ui/DaysLeft.css";
 
 class DaysLeft extends WidgetBase {
-    Date: string;
+    Date: Date;
     Name: string;
     MicroflowToRun: string;
     public Deadline: any;
     private contextObject: mendix.lib.MxObject;
-    private input: string;
-    private dateInput: string;
+    private input: any;
 
     postCreate() {
         this.customize();
@@ -33,7 +32,7 @@ class DaysLeft extends WidgetBase {
         }, this.domNode);
         domConstruct.create("input", {
               class: "Event-Name",
-             id: "EventName",
+             id: "name",
             textValue: "Insert any string",
             type: "text"
         }, this.domNode);
@@ -42,7 +41,7 @@ class DaysLeft extends WidgetBase {
         }, this.domNode);
         domConstruct.create("input", {
             class: "Date-Of-Event",
-            id: "DateName",
+            id: "name",
             textValue: "Insert any string",
             type: "date"
         }, this.domNode);
@@ -56,7 +55,6 @@ class DaysLeft extends WidgetBase {
             value: "save"
         }, this.domNode).addEventListener("click", () => {
             this.createEvent();
-           // this.createDate();
         }, false);
         domConstruct.create("input", {
             class: "buttonTwo",
@@ -79,10 +77,8 @@ class DaysLeft extends WidgetBase {
     private createEvent(): void {
         mx.data.create({
             callback: (obj: mendix.lib.MxObject) => {
-                // this.input = dom.byId("EventName");
-                obj.set(this.Name, dom.byId("EventName").value);
-                // this.dateInput = dom.byId("DateName");
-                obj.set(this.Date, dom.byId("DateName").value);
+                this.input = dom.byId("Name");
+                obj.set(this.Name, this.input.value);
                 this.saveEvent(obj);
                 // console.log("Object created on server");
             },
@@ -92,20 +88,6 @@ class DaysLeft extends WidgetBase {
             }
         });
     }
-   /* private createDate(): void {
-        mx.data.create({
-            callback: (obj: mendix.lib.MxObject) => {
-                this.dateInput = dom.byId("DateName");
-                obj.set(this.Date, this.dateInput.value);
-                this.saveDate(obj);
-                // console.log("Object created on server");
-            },
-            entity: this.Deadline,
-            error: (errors) => {
-                // console.log("an error occured: " + errors);
-            }
-        });
-    }*/
     private saveEvent(contextObject: any, callback?: () => void) {
         mx.data.commit({
             callback: () => {
@@ -114,14 +96,6 @@ class DaysLeft extends WidgetBase {
             mxobj: contextObject
         });
     }
-    /*private saveDate(contextObject: any, callback?: () => void) {
-        mx.data.commit({
-            callback: () => {
-                // console.log("Object committed");
-            },
-            mxobj: contextObject
-        });
-    }*/
     private ExecuteMicroflow(mf: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
         if (mf && guid) {
             mx.ui.action(mf, {
