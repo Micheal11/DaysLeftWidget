@@ -42,7 +42,7 @@ class DaysLeft extends WidgetBase {
             class: "buttonTwo",
             type: "button",
             value: "Cancel"
-       }, this.domNode).addEventListener("mouseleave", () => {
+        }, this.domNode).addEventListener("mouseleave", () => {
             if (this.MicroflowToRun !== "") {
                 this.ExecuteMicroflow(this.MicroflowToRun, this.contextObject.getGuid());
             }
@@ -59,8 +59,8 @@ class DaysLeft extends WidgetBase {
     private createEvent(): void {
         mx.data.create({
             callback: (obj: mendix.lib.MxObject) => {
-                // this.input = dom.byId("Name");
-                obj.set(this.Name, this.input.value);
+                this.input = dom.byId("Name");
+                obj.set(this.Name, this.input);
                 this.saveEvent(obj);
                 // console.log("Object created on server");
             },
@@ -89,14 +89,14 @@ class DaysLeft extends WidgetBase {
     private ExecuteMicroflow(mf: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
         if (mf && guid) {
             mx.ui.action(mf, {
+                params: {
+                    applyto: "selection",
+                    guids: [ guid ]
+                },
                 callback: (objs: mendix.lib.MxObject) => {
                     if (cb && typeof cb === "function") {
                         cb(objs);
                     }
-                },
-                params: {
-                    applyto: "selection",
-                    guids: [ guid ]
                 },
                 error: (error) => {
                     // console.debug(error.description);

@@ -89,14 +89,14 @@ class DaysLeft extends WidgetBase {
     private ExecuteMicroflow(mf: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
         if (mf && guid) {
             mx.ui.action(mf, {
+                params: {
+                    applyto: "selection",
+                    guids: [ guid ]
+                },
                 callback: (objs: mendix.lib.MxObject) => {
                     if (cb && typeof cb === "function") {
                         cb(objs);
                     }
-                },
-                params: {
-                    applyto: "selection",
-                    guids: [ guid ]
                 },
                 error: (error) => {
                     // console.debug(error.description);

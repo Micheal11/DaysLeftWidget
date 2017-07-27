@@ -530,11 +530,11 @@ H1OPqcfU4+px9Tj6nH1OPqcfU4+px9Tj6nH1OAd21PYCP//Z
                 <attributeType name="DateTime" />
             </attributeTypes>
         </property>
-        <property key="MicroflowToRun" type="microflow" required="false" defaultValue="">
+       <!-- <property key="MicroflowToRun" type="microflow" required="true" defaultValue="">
             <caption>Microflow</caption>
             <category>Behavior</category>
             <description>The microflow to execute on click.</description>
             <returnType type="Boolean" />
-        </property>
+        </property>-->
     </properties>
 </widget>

@@ -10,7 +10,6 @@ import "./ui/DaysLeft.css";
 class DaysLeft extends WidgetBase {
     Date: Date;
     Name: string;
-    MicroflowToRun: string;
     public Deadline: any;
     private contextObject: mendix.lib.MxObject;
     private input: any;
@@ -42,11 +41,9 @@ class DaysLeft extends WidgetBase {
             class: "buttonTwo",
             type: "button",
             value: "Cancel"
-       }, this.domNode).addEventListener("mouseleave", () => {
-            if (this.MicroflowToRun !== "") {
-                this.ExecuteMicroflow(this.MicroflowToRun, this.contextObject.getGuid());
-            }
-        });
+        }, this.domNode).addEventListener("click", () => {
+            this.uninitialize();
+        }, false);
     }
     updateRendering() {
         if (this.contextObject) {
@@ -85,24 +82,6 @@ class DaysLeft extends WidgetBase {
             return 0;
         else
             return (FirstDate - SecondDate);
-    }
-    private ExecuteMicroflow(mf: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
-        if (mf && guid) {
-            mx.ui.action(mf, {
-                callback: (objs: mendix.lib.MxObject) => {
-                    if (cb && typeof cb === "function") {
-                        cb(objs);
-                    }
-                },
-                params: {
-                    applyto: "selection",
-                    guids: [ guid ]
-                },
-                error: (error) => {
-                    // console.debug(error.description);
-                }
-            }, this);
-        }
     }
 }
 dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {

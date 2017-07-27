@@ -509,7 +509,7 @@ VH0qPpUfWo+jR9Oj69H06PrUfWo+px9Sj6DH1ePq8fUY+ox9Bi/4MfVY+rw/5WPpEfWo+lR9ch/x
 H1OPqcfU4+px9Tj6nH1OPqcfU4+px9Tj6nH1OAd21PYCP//Z
 </icon>
     <properties>
-        <property key="Deadline" type="entity" required="false" defaultValue="">
+    <property key="Deadline" type="entity" required="false" defaultValue="">
             <caption>Entity</caption>
             <category>Behavior</category>
             <description>This is an entity</description>
@@ -529,12 +529,6 @@ H1OPqcfU4+px9Tj6nH1OPqcfU4+px9Tj6nH1OAd21PYCP//Z
             <attributeTypes>
                 <attributeType name="DateTime" />
             </attributeTypes>
-        </property>
-        <property key="MicroflowToRun" type="microflow" required="false" defaultValue="">
-            <caption>Microflow</caption>
-            <category>Behavior</category>
-            <description>The microflow to execute on click.</description>
-            <returnType type="Boolean" />
         </property>
     </properties>
 </widget>
