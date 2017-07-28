@@ -58,7 +58,7 @@ class DaysLeft extends WidgetBase {
             type: "button",
             value: "save"
         }, this.domNode).addEventListener("click", () => {
-           // this.calculateDaysLeft();
+            this.calculateDaysLeft();
             this.createEvent();
         }, false);
         domConstruct.create("input", {
@@ -85,14 +85,14 @@ class DaysLeft extends WidgetBase {
         }
     }
 
-    /*private calculateDaysLeft(): number {
+    private calculateDaysLeft(): number {
         dom.byId("DateName").value;
         this.displayDate = new Date().toLocaleDateString();
         this.currentDay = parseInt(this.displayDate.split("/")[1], 0);
         alert(parseInt(dom.byId("DateName").value.split("-")[1], 0) - parseInt(this.displayDate.split("/")[1], 0));
 
         return 0;
-    }*/
+    }
 
     private createEvent(): void {
         mx.data.create({
