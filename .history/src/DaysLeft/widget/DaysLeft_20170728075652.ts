@@ -36,7 +36,6 @@ class DaysLeft extends WidgetBase {
         domConstruct.create("input", {
             class: "Event-Name",
             id: "EventName",
-            placeHolder: "Enter your event",
             textValue: "Insert any string",
             type: "text"
         }, this.domNode);
