@@ -514,7 +514,7 @@ H1OPqcfU4+px9Tj6nH1OPqcfU4+px9Tj6nH1OAd21PYCP//Z
             <category>Behavior</category>
             <description>This is an entity</description>
         </property>
-        <property key="Name" type="attribute" entityProperty="Deadline" required="false" >
+        <property key="eventName" type="attribute" entityProperty="Deadline" required="false" >
             <caption>Event input</caption>
             <category>Data Source</category>
             <description>This is the name of the event</description>
@@ -522,12 +522,12 @@ H1OPqcfU4+px9Tj6nH1OPqcfU4+px9Tj6nH1OAd21PYCP//Z
                 <attributeType name="String" />
             </attributeTypes>
         </property>
-        <property key="Date" type="attribute" entityProperty="Deadline" required="true" >
+        <property key="dateOfEvent" type="attribute" entityProperty="Deadline" required="true" >
             <caption>Date Attribute</caption>
             <category>Data Source</category>
             <description>This is the Date of the event</description>
             <attributeTypes>
-                <attributeType name="String" />
+                <attributeType name="Date" />
             </attributeTypes>
         </property>
         <property key="MicroflowToRun" type="microflow" required="false" defaultValue="">

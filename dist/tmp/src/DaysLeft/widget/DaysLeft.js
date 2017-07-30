@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("dojo/_base/declare"), require("dojo/dom"), require("dojo/dom-construct"), require("mxui/widget/_WidgetBase"));
+		module.exports = factory(require("dojo/_base/declare"), require("dojo/dom"), require("mxui/widget/_WidgetBase"));
 	else if(typeof define === 'function' && define.amd)
-		define(["dojo/_base/declare", "dojo/dom", "dojo/dom-construct", "mxui/widget/_WidgetBase"], factory);
+		define(["dojo/_base/declare", "dojo/dom", "mxui/widget/_WidgetBase"], factory);
 	else {
-		var a = typeof exports === 'object' ? factory(require("dojo/_base/declare"), require("dojo/dom"), require("dojo/dom-construct"), require("mxui/widget/_WidgetBase")) : factory(root["dojo/_base/declare"], root["dojo/dom"], root["dojo/dom-construct"], root["mxui/widget/_WidgetBase"]);
+		var a = typeof exports === 'object' ? factory(require("dojo/_base/declare"), require("dojo/dom"), require("mxui/widget/_WidgetBase")) : factory(root["dojo/_base/declare"], root["dojo/dom"], root["mxui/widget/_WidgetBase"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -102,12 +102,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = (this && this.__extends) || (function () {
@@ -120,7 +114,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(1), __webpack_require__(3), __webpack_require__(4), __webpack_require__(2), __webpack_require__(0)], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, dojoDeclare, domConstruct, WidgetBase, dom) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(1), __webpack_require__(3), __webpack_require__(2), __webpack_require__(0)], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, dojoDeclare, WidgetBase, dom) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var DaysLeft = (function (_super) {
@@ -138,54 +132,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
             }
         };
         DaysLeft.prototype.customize = function () {
-            var _this = this;
-            domConstruct.create("input", {
-                class: "Event-Name",
-                id: "EventName",
-                placeholder: "Enter Your Event",
-                textValue: "Insert any string",
-                type: "text"
-            }, this.domNode);
-            domConstruct.create("div", {
-                innerHTML: "<br/>"
-            }, this.domNode);
-            domConstruct.create("input", {
-                class: "Date-Of-Event",
-                id: "DateName",
-                placeholder: "Choose Your Date",
-                textValue: "Input date",
-                type: "date"
-            }, this.domNode);
-            domConstruct.create("div", {
-                innerHTML: "<br/>"
-            }, this.domNode);
-            domConstruct.create("input", {
-                class: "buttonOne",
-                id: "Namek",
-                type: "button",
-                value: "save"
-            }, this.domNode).addEventListener("click", function () {
-                _this.createEvent();
-                _this.display();
-            }, false);
-            domConstruct.create("input", {
-                class: "buttonTwo",
-                type: "button",
-                value: "Cancel"
-            }, this.domNode).addEventListener("click", function () {
-                if (_this.MicroflowToRun !== "") {
-                    _this.ExecuteMicroflow(_this.MicroflowToRun, _this.contextObject.getGuid());
-                }
-            });
-            domConstruct.create("div", {
-                class: "days-left-widget",
-                id: "dayswidget"
-            }, this.domNode);
         };
         DaysLeft.prototype.display = function () {
-            this.x = dom.byId("EventName").value;
-            dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.x +
-                "</td></tr> <tr><td allign='center'>" + this.calculateDaysLeft() + "</td></tr></table>";
+            dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.eventName +
+                "</td></tr > <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
         };
         DaysLeft.prototype.updateRendering = function () {
             this.customize();
@@ -194,70 +144,18 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
             else {
             }
         };
-        DaysLeft.prototype.calculateDaysLeft = function () {
-            this.first = dom.byId("DateName").value;
-            alert(this.first);
-            var myDate = new Date();
-            var myMonth = myDate.getMonth() + 1;
-            var myDay = myDate.getDay();
-            var myYear = myDate.getFullYear();
-            var today = myMonth + "/" + myDay + "/" + myYear;
-            var mendixDate = new Date(this.first);
-            var mendixMonth = mendixDate.getMonth() + 1;
-            var mendixDay = mendixDate.getUTCDay();
-            var mendixYear = mendixDate.getFullYear();
-            var mendixToday = mendixMonth + "/" + mendixDay + "/" + mendixYear;
-            var fir = this.parseDate(this.first);
-            alert(mendixToday);
-            alert(today);
-            alert(typeof (this.parseDate(today)));
-            alert(typeof (mendixToday));
-            return Math.round((this.parseDate(mendixToday) - this.parseDate(today)) / (1000 * 60 * 60 * 24));
+        DaysLeft.prototype.computeDays = function () {
+            var futureDate = new Date(this.dateOfEvent);
+            var mendixDate = new Date(futureDate.getFullYear(), futureDate.getMonth(), futureDate.getDate());
+            var TodayDate = new Date();
+            return (this.DatedaysBetween(TodayDate, futureDate));
         };
-        DaysLeft.prototype.parseDate = function (theDate) {
-            var useDate;
-            useDate = theDate.split("/");
-            return new Date(useDate[2], useDate[0] - 1, useDate[1]);
-        };
-        DaysLeft.prototype.createEvent = function () {
-            var _this = this;
-            mx.data.create({
-                callback: function (obj) {
-                    obj.set(_this.Name, dom.byId("EventName").value);
-                    obj.set(_this.Date, dom.byId("DateName").value);
-                    _this.saveEvent(obj);
-                    console.log("Object created on server");
-                },
-                entity: this.Deadline,
-                error: function (errors) {
-                    console.log("an error occured: " + errors);
-                }
-            });
-        };
-        DaysLeft.prototype.saveEvent = function (contextObject, callback) {
-            mx.data.commit({
-                callback: function () {
-                    console.log("Object committed");
-                },
-                mxobj: contextObject
-            });
-        };
-        DaysLeft.prototype.ExecuteMicroflow = function (mf, guid, cb) {
-            if (mf && guid) {
-                mx.ui.action(mf, {
-                    callback: function (objs) {
-                        if (cb && typeof cb === "function") {
-                            cb(objs);
-                        }
-                    },
-                    params: {
-                        applyto: "selection",
-                        guids: [guid]
-                    },
-                    error: function (error) {
-                    }
-                }, this);
-            }
+        DaysLeft.prototype.DatedaysBetween = function (date1, date2) {
+            var oneDay = 1000 * 60 * 60 * 24;
+            var date1Microsec = date1.getTime();
+            var date2Microsec = date2.getTime();
+            var differenceInMicrosec = date2Microsec - date1Microsec;
+            return Math.ceil(differenceInMicrosec / oneDay);
         };
         return DaysLeft;
     }(WidgetBase));
