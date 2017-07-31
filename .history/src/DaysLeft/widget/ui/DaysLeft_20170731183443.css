@@ -70,17 +70,5 @@
     transition: 100ms;
 }
 .set-to-yellow{
-	background-color: #FFFF00;
+	background-color: FFFF00;
 } 
-.set-to-red {
-	background-color: #FF0000;
-}
-.set-to-green {
-	background-color: #008000
-}
-.set-to-blue {
-	background-color: #0000FF
-}
-.set-to-purple {
-	background-color: #800080
-}

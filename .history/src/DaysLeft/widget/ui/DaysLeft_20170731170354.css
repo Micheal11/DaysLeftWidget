@@ -53,7 +53,7 @@
     box-sizing: border-box;
 }
 .Date-Of-Event {
-    width: 100%;
+    width: 20%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -62,25 +62,17 @@
     border-radius: 4px;
     box-sizing: border-box;
 }
+
 .days-left-widget {
+    /*background-color: #FFFF00;*/
     border: 5px solid red;
     float: right;
     padding: 25px;
     border-radius: 25px;
     transition: 100ms;
+   /* font-family: serif;
+    text-align: center;*/
+
 }
-.set-to-yellow{
-	background-color: #FFFF00;
-} 
-.set-to-red {
-	background-color: #FF0000;
-}
-.set-to-green {
-	background-color: #008000
-}
-.set-to-blue {
-	background-color: #0000FF
-}
-.set-to-purple {
-	background-color: #800080
-}
+
+ 
