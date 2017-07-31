@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ﻿{"files":{"css":["lib/bootstrap/css/bootstrap.min.css","mxclientsystem/mxui/ui/mxui.css","css/theme.css"],"js":["mxclientsystem/mxui/mxui.js"]},"cachebust":"636370889742236399","downloadResources":false}
+=======
+﻿{"files":{"css":["lib/bootstrap/css/bootstrap.min.css","mxclientsystem/mxui/ui/mxui.css","css/theme.css"],"js":["mxclientsystem/mxui/mxui.js"]},"cachebust":"636368507253504140","downloadResources":false}
+>>>>>>> 0bdbf882ed741fddb20cc4634400568d326e87b6

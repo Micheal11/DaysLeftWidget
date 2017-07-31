@@ -178,10 +178,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
                     _this.ExecuteMicroflow(_this.MicroflowToRun, _this.contextObject.getGuid());
                 }
             });
+<<<<<<< HEAD
             domConstruct.create("div", {
                 class: "days-left-widget",
                 id: "dayswidget",
             }, this.domNode);
+=======
+>>>>>>> 0bdbf882ed741fddb20cc4634400568d326e87b6
         };
         DaysLeft.prototype.display = function () {
             this.x = dom.byId("EventName").value;
