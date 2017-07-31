@@ -93,6 +93,7 @@ class DaysLeft extends WidgetBase {
     private computeDays(): number {
         this.insertedDate = dom.byId("DateName").value;
         const futureDate = new Date(this.insertedDate);
+        alert(futureDate);
         const mendixDate = new Date(futureDate.getFullYear(), futureDate.getMonth(), futureDate.getDate());
         const TodayDate = new Date();
         return (this.DatedaysBetween(TodayDate, futureDate));
@@ -104,7 +105,7 @@ class DaysLeft extends WidgetBase {
         const date1Microsec = date1.getTime();
         const date2Microsec = date2.getTime();
         const differenceInMicrosec = date2Microsec - date1Microsec;
-        return Math.ceil(differenceInMicrosec / oneDay);
+        return Math.round(differenceInMicrosec / oneDay);
     }
 
     private createEvent(): void {

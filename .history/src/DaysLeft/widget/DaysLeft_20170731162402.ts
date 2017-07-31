@@ -93,6 +93,7 @@ class DaysLeft extends WidgetBase {
     private computeDays(): number {
         this.insertedDate = dom.byId("DateName").value;
         const futureDate = new Date(this.insertedDate);
+        alert(futureDate);
         const mendixDate = new Date(futureDate.getFullYear(), futureDate.getMonth(), futureDate.getDate());
         const TodayDate = new Date();
         return (this.DatedaysBetween(TodayDate, futureDate));

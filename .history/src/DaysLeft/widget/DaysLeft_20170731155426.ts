@@ -79,7 +79,7 @@ class DaysLeft extends WidgetBase {
     display() {
         this.insertedEvent = dom.byId("EventName").value;
         dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +
-            "</td></tr> <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
+            "</td></tr> <tr><td allign='center'>" + this.DatedaysBetween() + "</td></tr></table>";
     }
     updateRendering() {
         this.customize();
@@ -90,21 +90,19 @@ class DaysLeft extends WidgetBase {
         }
     }
 
-    private computeDays(): number {
-        this.insertedDate = dom.byId("DateName").value;
-        const futureDate = new Date(this.insertedDate);
-        const mendixDate = new Date(futureDate.getFullYear(), futureDate.getMonth(), futureDate.getDate());
-        const TodayDate = new Date();
-        return (this.DatedaysBetween(TodayDate, futureDate));
-    }
-
     DatedaysBetween(date1: Date, date2: Date): number {
-        // this.insertedDate = dom.byId("DateName").value;
+        this.insertedDate = dom.byId("DateName").value;
         const oneDay = 1000 * 60 * 60 * 24;
         const date1Microsec = date1.getTime();
         const date2Microsec = date2.getTime();
         const differenceInMicrosec = date2Microsec - date1Microsec;
-        return Math.ceil(differenceInMicrosec / oneDay);
+        return Math.round(differenceInMicrosec / oneDay);
+    }
+    private computeDays(): number {
+        const futureDate = new Date(this.insertedDate);
+        const mendixDate = new Date(futureDate.getFullYear(), futureDate.getMonth(), futureDate.getDate());
+        const TodayDate = new Date();
+        return (this.DatedaysBetween(TodayDate, futureDate));
     }
 
     private createEvent(): void {
