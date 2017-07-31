@@ -110,10 +110,10 @@ class DaysLeft extends WidgetBase {
         alert(typeof(sec));
         return Math.round((fir - sec) / (1000 * 60 * 60 * 24));
     }
-    private parseDate(str: string): any {
-        let theDate: any;
-        theDate = str.split("/");
-        return new Date(theDate[2], theDate[0] - 1, theDate[1]);
+    private parseDate(theDate: string): any {
+        let useDate: any;
+        useDate = theDate.split("/");
+        return new Date(useDate[2], useDate[0] - 1, useDate[1]);
     }
 
     private createEvent(): void {
