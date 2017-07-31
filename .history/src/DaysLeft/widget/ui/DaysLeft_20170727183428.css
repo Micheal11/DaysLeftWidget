@@ -1,0 +1,28 @@
+  /* .buttonOne{
+    background-color: #cc00cc;
+    border: none;
+    border-radius: 25px;
+    color: #660033;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.buttonTwo{
+    background-color: #cc00cc;
+    border: none;
+    border-radius: 25px;
+    color: #660033;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}   */
+.days-left-widget {
+    float: right;
+    padding: 25px;
+    border-radius: 25px;
+    transition: 100ms;
+}
