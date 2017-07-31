@@ -1,10 +1,1 @@
-{
-    "files": {
-        "css": [
-            "lib/bootstrap/css/bootstrap.min.css",
-            "mxclientsystem/mxui/ui/mxui.css",
-            "css/theme.css"
-        ],
-        "js": [ "mxclientsystem/mxui/mxui.js" ]
-    }
-}
+﻿{"files":{"css":["lib/bootstrap/css/bootstrap.min.css","mxclientsystem/mxui/ui/mxui.css","css/theme.css"],"js":["mxclientsystem/mxui/mxui.js"]},"cachebust":"636370905789187357","downloadResources":false}
