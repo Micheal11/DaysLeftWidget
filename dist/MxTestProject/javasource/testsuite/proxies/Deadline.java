@@ -20,11 +20,7 @@ public class Deadline
 	 */
 	public enum MemberNames
 	{
-<<<<<<< HEAD
 		Event("Event"),
-=======
-		Name("Name"),
->>>>>>> 0bdbf882ed741fddb20cc4634400568d326e87b6
 		Date("Date");
 
 		private java.lang.String metaName;
@@ -121,24 +117,15 @@ public class Deadline
 		com.mendix.core.Core.delete(context, getMendixObject());
 	}
 	/**
-<<<<<<< HEAD
 	 * @return value of Event
 	 */
 	public final java.lang.String getEvent()
 	{
 		return getEvent(getContext());
-=======
-	 * @return value of Name
-	 */
-	public final java.lang.String getName()
-	{
-		return getName(getContext());
->>>>>>> 0bdbf882ed741fddb20cc4634400568d326e87b6
 	}
 
 	/**
 	 * @param context
-<<<<<<< HEAD
 	 * @return value of Event
 	 */
 	public final java.lang.String getEvent(com.mendix.systemwideinterfaces.core.IContext context)
@@ -163,32 +150,6 @@ public class Deadline
 	public final void setEvent(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String event)
 	{
 		getMendixObject().setValue(context, MemberNames.Event.toString(), event);
-=======
-	 * @return value of Name
-	 */
-	public final java.lang.String getName(com.mendix.systemwideinterfaces.core.IContext context)
-	{
-		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Name.toString());
-	}
-
-	/**
-	 * Set value of Name
-	 * @param name
-	 */
-	public final void setName(java.lang.String name)
-	{
-		setName(getContext(), name);
-	}
-
-	/**
-	 * Set value of Name
-	 * @param context
-	 * @param name
-	 */
-	public final void setName(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String name)
-	{
-		getMendixObject().setValue(context, MemberNames.Name.toString(), name);
->>>>>>> 0bdbf882ed741fddb20cc4634400568d326e87b6
 	}
 
 	/**

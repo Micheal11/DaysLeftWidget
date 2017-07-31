@@ -129,6 +129,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
             return _super !== null && _super.apply(this, arguments) || this;
         }
         DaysLeft.prototype.postCreate = function () {
+            this.customize();
         };
         DaysLeft.prototype.update = function (object, callback) {
             this.contextObject = object;
@@ -139,10 +140,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
         };
         DaysLeft.prototype.customize = function () {
             var _this = this;
+            domConstruct.create("div", {
+                innerHTML: "<br/>"
+            }, this.domNode);
             domConstruct.create("input", {
                 class: "Event-Name",
                 id: "EventName",
-                placeholder: "Enter Your Event",
+                placeHolder: "Enter your event",
                 textValue: "Insert any string",
                 type: "text"
             }, this.domNode);
@@ -152,7 +156,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
             domConstruct.create("input", {
                 class: "Date-Of-Event",
                 id: "DateName",
-                placeholder: "Choose Your Date",
                 textValue: "Input date",
                 type: "date"
             }, this.domNode);
@@ -165,9 +168,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
                 type: "button",
                 value: "save"
             }, this.domNode).addEventListener("click", function () {
-                _this.calculateDaysLeft();
+                _this.calculateDaysLeft("3/4/2017", "2/2/2017");
                 _this.createEvent();
-                _this.display();
             }, false);
             domConstruct.create("input", {
                 class: "buttonTwo",
@@ -178,33 +180,31 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
                     _this.ExecuteMicroflow(_this.MicroflowToRun, _this.contextObject.getGuid());
                 }
             });
-<<<<<<< HEAD
             domConstruct.create("div", {
                 class: "days-left-widget",
-                id: "dayswidget",
+                id: "daysHtml",
+                innerHTML: "<span> Event </span>"
             }, this.domNode);
-=======
->>>>>>> 0bdbf882ed741fddb20cc4634400568d326e87b6
-        };
-        DaysLeft.prototype.display = function () {
-            this.x = dom.byId("EventName").value;
-            this.y = dom.byId("DateName").value;
-            dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.x +
-                "</td></tr> <tr><td allign='center'>" + this.y + "</td></tr></table>";
         };
         DaysLeft.prototype.updateRendering = function () {
-            this.customize();
             if (this.contextObject) {
+                domConstruct.empty(this.domNode);
+                this.customize();
             }
             else {
             }
         };
-        DaysLeft.prototype.calculateDaysLeft = function () {
+        DaysLeft.prototype.calculateDaysLeft = function (first, second) {
             dom.byId("DateName").value;
-            this.displayDate = new Date().toLocaleDateString();
-            this.currentDay = parseInt(this.displayDate.split("/")[1], 0);
-            var x = parseInt(dom.byId("DateName").value.split("-")[1], 0) - parseInt(this.displayDate.split("/")[1], 0);
-            return 0;
+            var fir = this.parseDate(first);
+            var sec = this.parseDate(second);
+            alert(Math.round((sec - fir) / (1000 * 60 * 60 * 24)));
+            return Math.round((sec - fir) / (1000 * 60 * 60 * 24));
+        };
+        DaysLeft.prototype.parseDate = function (str) {
+            var mdy;
+            mdy = str.split("/");
+            return new Date(mdy[2], mdy[0] - 1, mdy[1]);
         };
         DaysLeft.prototype.createEvent = function () {
             var _this = this;
@@ -237,11 +237,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
                             cb(objs);
                         }
                     },
+                    error: function (error) {
+                    },
                     params: {
                         applyto: "selection",
                         guids: [guid]
-                    },
-                    error: function (error) {
                     }
                 }, this);
             }
