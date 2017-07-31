@@ -16,12 +16,12 @@ class DaysLeft extends WidgetBase {
     private input: string;
     private dateInput: string;
     private currentDay: number;
-    private displayDate: string;
-    private currentMonth: number;
-    private currentYear: number;
+    private x: string;
+    displayDate: string;
+    private y: string;
 
     postCreate() {
-        this.customize();
+        // this.customize();
     }
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
@@ -32,13 +32,10 @@ class DaysLeft extends WidgetBase {
         }
     }
     private customize() {
-        domConstruct.create("div", {
-            innerHTML: "<br/>"
-        }, this.domNode);
         domConstruct.create("input", {
             class: "Event-Name",
             id: "EventName",
-            placeHolder: "Enter your event",
+            placeholder: "Enter Your Event",
             textValue: "Insert any string",
             type: "text"
         }, this.domNode);
@@ -48,6 +45,7 @@ class DaysLeft extends WidgetBase {
         domConstruct.create("input", {
             class: "Date-Of-Event",
             id: "DateName",
+            placeholder: "Choose Your Date",
             textValue: "Input date",
             type: "date"
         }, this.domNode);
@@ -60,8 +58,9 @@ class DaysLeft extends WidgetBase {
             type: "button",
             value: "save"
         }, this.domNode).addEventListener("click", () => {
-            this.calculateDaysLeft("3/4/2017", "2/2/2017");
+            this.calculateDaysLeft();
             this.createEvent();
+            this.display();
         }, false);
         domConstruct.create("input", {
             class: "buttonTwo",
@@ -74,30 +73,31 @@ class DaysLeft extends WidgetBase {
         });
         domConstruct.create("div", {
             class: "days-left-widget",
-            id: "daysHtml",
-            innerHTML: "<span> Event </span>"
+            id: "dayswidget",
+            // tslint:disable-next-line:max-line-length
         }, this.domNode);
     }
+    display() {
+        this.x = dom.byId("EventName").value;
+        this.y = dom.byId("DateName").value;
+        dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.x +
+            "</td></tr> <tr><td allign='center'>" + this.y + "</td></tr></table>";
+    }
     updateRendering() {
+        this.customize();
         if (this.contextObject) {
-            domConstruct.empty(this.domNode);
-            this.customize();
+            // comment
         } else {
             // comment
         }
     }
 
-    private calculateDaysLeft(first: string, second: string): number {
+    private calculateDaysLeft(): number {
         dom.byId("DateName").value;
-        const fir = this.parseDate(first);
-        const sec = this.parseDate(second);
-        alert(Math.round((sec - fir) / (1000 * 60 * 60 * 24)));
-        return Math.round((sec - fir) / (1000 * 60 * 60 * 24));
-    }
-    private parseDate(str: string): any {
-        let mdy: any;
-        mdy = str.split("/");
-        return new Date(mdy[2], mdy[0] - 1, mdy[1]);
+        this.displayDate = new Date().toLocaleDateString();
+        this.currentDay = parseInt(this.displayDate.split("/")[1], 0);
+        let x = parseInt(dom.byId("DateName").value.split("-")[1], 0) - parseInt(this.displayDate.split("/")[1], 0);
+        return 0;
     }
 
     private createEvent(): void {
@@ -130,18 +130,18 @@ class DaysLeft extends WidgetBase {
                         cb(objs);
                     }
                 },
-                error: (error) => {
-                    // console.debug(error.description);
-                },
                 params: {
                     applyto: "selection",
-                    guids: [ guid ]
+                    guids: [guid]
+                },
+                error: (error) => {
+                    // console.debug(error.description);
                 }
             }, this);
         }
     }
 }
-dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {
+dojoDeclare("DaysLeft.widget.DaysLeft", [WidgetBase], function (Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
