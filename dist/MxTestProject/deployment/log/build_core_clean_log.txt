@@ -1,0 +1,9 @@
+Buildfile: E:\Projects\fromGRC\DaysLeftWidget\dist\MxTestProject\deployment\build_core.xml
+
+clean:
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+
+

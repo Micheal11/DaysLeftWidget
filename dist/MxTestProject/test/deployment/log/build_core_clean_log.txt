@@ -1,0 +1,9 @@
+Buildfile: E:\Projects\ReverseWidget\ReverseStringAssignment\test\deployment\build_core.xml
+
+clean:
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+
+

@@ -1,0 +1,10 @@
+Buildfile: F:\GRCassignment\newProject\Final\new\DaysLeftWidget\dist\MxTestProject\deployment\build_core.xml
+
+deploy:
+    [unzip] Expanding: C:\Program Files\Mendix\6.10.7\modeler\deployment.mxz into F:\GRCassignment\newProject\Final\new\DaysLeftWidget\dist\MxTestProject\deployment
+
+BUILD SUCCESSFUL
+Total time: 1 second
+
+
+
