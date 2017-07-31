@@ -60,7 +60,7 @@ class DaysLeft extends WidgetBase {
             type: "button",
             value: "save"
         }, this.domNode).addEventListener("click", () => {
-            this.calculateDaysLeft("3/4/2017", "2/2/2017");
+           // this.calculateDaysLeft();
             this.createEvent();
         }, false);
         domConstruct.create("input", {
@@ -87,17 +87,13 @@ class DaysLeft extends WidgetBase {
         }
     }
 
-    private calculateDaysLeft(first: string, second: string): number {
+    private calculateDaysLeft(): number {
         dom.byId("DateName").value;
-        const fir = this.parseDate(first);
-        const sec = this.parseDate(second);
-        alert(Math.round((sec - fir) / (1000 * 60 * 60 * 24)));
-        return Math.round((sec - fir) / (1000 * 60 * 60 * 24));
-    }
-    private parseDate(str: string): any {
-        let mdy: any;
-        mdy = str.split("/");
-        return new Date(mdy[2], mdy[0] - 1, mdy[1]);
+        this.displayDate = new Date().toLocaleDateString();
+        this.currentDay = parseInt(this.displayDate.split("/")[1], 0);
+        alert(parseInt(dom.byId("DateName").value.split("-")[1], 0) - parseInt(this.displayDate.split("/")[1], 0));
+
+        return 0;
     }
 
     private createEvent(): void {

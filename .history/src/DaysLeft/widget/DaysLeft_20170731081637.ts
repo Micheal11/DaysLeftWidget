@@ -91,7 +91,7 @@ class DaysLeft extends WidgetBase {
         dom.byId("DateName").value;
         const fir = this.parseDate(first);
         const sec = this.parseDate(second);
-        alert(Math.round((sec - fir) / (1000 * 60 * 60 * 24)));
+        alert();
         return Math.round((sec - fir) / (1000 * 60 * 60 * 24));
     }
     private parseDate(str: string): any {
@@ -141,7 +141,7 @@ class DaysLeft extends WidgetBase {
         }
     }
 }
-dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {
+dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function (Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
