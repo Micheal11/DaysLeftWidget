@@ -196,17 +196,23 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
         };
         DaysLeft.prototype.calculateDaysLeft = function () {
             this.first = dom.byId("DateName").value;
+            alert(this.first);
             var myDate = new Date();
             var myMonth = myDate.getMonth() + 1;
             var myDay = myDate.getDay();
             var myYear = myDate.getFullYear();
             var today = myMonth + "/" + myDay + "/" + myYear;
+            var mendixDate = new Date(this.first);
+            var mendixMonth = mendixDate.getMonth() + 1;
+            var mendixDay = mendixDate.getUTCDay();
+            var mendixYear = mendixDate.getFullYear();
+            var mendixToday = mendixMonth + "/" + mendixDay + "/" + mendixYear;
             var fir = this.parseDate(this.first);
-            alert(fir);
-            var sec = this.parseDate(today);
-            alert(sec);
-            alert(typeof (sec));
-            return Math.round((fir - sec) / (1000 * 60 * 60 * 24));
+            alert(mendixToday);
+            alert(today);
+            alert(typeof (this.parseDate(today)));
+            alert(typeof (mendixToday));
+            return Math.round((this.parseDate(mendixToday) - this.parseDate(today)) / (1000 * 60 * 60 * 24));
         };
         DaysLeft.prototype.parseDate = function (theDate) {
             var useDate;

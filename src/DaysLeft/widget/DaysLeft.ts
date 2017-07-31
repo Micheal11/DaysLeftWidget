@@ -6,7 +6,6 @@ import * as dojoStyle from "dojo/dom-style";
 import * as dojoHtml from "dojo/html";
 import * as dom from "dojo/dom";
 import "./ui/DaysLeft.css";
-
 class DaysLeft extends WidgetBase {
     Date: string;
     Name: string;
@@ -16,19 +15,16 @@ class DaysLeft extends WidgetBase {
     private input: string;
     private dateInput: string;
     private currentDay: number;
-    private x: string;
-    displayDate: string;
-    private y: string;
-    private first: string;
+    private insertedEvent: string;
+    private displayDate: string;
+    private insertedDate: string;
     private second: string;
-
     postCreate() {
         // this.customize();
     }
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
         this.updateRendering();
-
         if (callback) {
             callback();
         }
@@ -60,7 +56,6 @@ class DaysLeft extends WidgetBase {
             type: "button",
             value: "save"
         }, this.domNode).addEventListener("click", () => {
-            // this.calculateDaysLeft();
             this.createEvent();
             this.display();
         }, false);
@@ -76,13 +71,12 @@ class DaysLeft extends WidgetBase {
         domConstruct.create("div", {
             class: "days-left-widget",
             id: "dayswidget"
-            // tslint:disable-next-line:max-line-length
         }, this.domNode);
     }
     display() {
-        this.x = dom.byId("EventName").value;
-        dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.x +
-            "</td></tr> <tr><td allign='center'>" + this.calculateDaysLeft() + "</td></tr></table>";
+        this.insertedEvent = dom.byId("EventName").value;
+        dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +
+            "</td></tr> <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
     }
     updateRendering() {
         this.customize();
@@ -92,28 +86,21 @@ class DaysLeft extends WidgetBase {
             // comment
         }
     }
-
-    private calculateDaysLeft(): number {
-        this.first = dom.byId("DateName").value;
-        const myDate = new Date();
-        const myMonth = myDate.getMonth() + 1;
-        const myDay = myDate.getDay();
-        const myYear = myDate.getFullYear();
-        const today = myMonth + "/" + myDay + "/" + myYear;
-        // this.second = today;
-        const fir = this.parseDate(this.first);
-        alert(fir);
-        const sec = this.parseDate(today);
-        alert(sec);
-        alert(typeof (sec));
-        return Math.round((fir - sec) / (1000 * 60 * 60 * 24));
+    private computeDays(): number {
+        this.insertedDate = dom.byId("DateName").value;
+        const futureDate = new Date(this.insertedDate);
+        const mendixDate = new Date(futureDate.getFullYear(), futureDate.getMonth(), futureDate.getDate());
+        const TodayDate = new Date();
+        return (this.DatedaysBetween(TodayDate, futureDate));
     }
-    private parseDate(theDate: string): any {
-        let useDate: any;
-        useDate = theDate.split("/");
-        return new Date(useDate[2], useDate[0] - 1, useDate[1]);
+    DatedaysBetween(date1: Date, date2: Date): number {
+        // this.insertedDate = dom.byId("DateName").value;
+        const oneDay = 1000 * 60 * 60 * 24;
+        const date1Microsec = date1.getTime();
+        const date2Microsec = date2.getTime();
+        const differenceInMicrosec = date2Microsec - date1Microsec;
+        return Math.ceil(differenceInMicrosec / oneDay);
     }
-
     private createEvent(): void {
         mx.data.create({
             callback: (obj: mendix.lib.MxObject) => {
@@ -144,12 +131,12 @@ class DaysLeft extends WidgetBase {
                         cb(objs);
                     }
                 },
+                error: (error) => {
+                    // console.debug(error.description);
+                },
                 params: {
                     applyto: "selection",
                     guids: [ guid ]
-                },
-                error: (error) => {
-                    // console.debug(error.description);
                 }
             }, this);
         }
