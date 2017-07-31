@@ -93,7 +93,7 @@ class DaysLeft extends WidgetBase {
         }
     }
 
-    private calculateDaysLeft( ): number {
+    private calculateDaysLeft(): number {
         this.first = dom.byId("DateName").value;
         const myDate = new Date();
         const myMonth = myDate.getMonth() + 1;
@@ -102,12 +102,12 @@ class DaysLeft extends WidgetBase {
         const today = myMonth + "/" + myDay + "/" + myYear;
         alert(myYear);
         alert(today);
-       // this.second = today;
+        // this.second = today;
         const fir = this.parseDate(this.first);
         alert(fir);
         const sec = this.parseDate(today);
         alert(sec);
-        alert(typeof(sec));
+        alert(typeof (sec));
         return Math.round((fir - sec) / (1000 * 60 * 60 * 24));
     }
     private parseDate(theDate: string): any {
@@ -148,7 +148,7 @@ class DaysLeft extends WidgetBase {
                 },
                 params: {
                     applyto: "selection",
-                    guids: [guid]
+                    guids: [ guid ]
                 },
                 error: (error) => {
                     // console.debug(error.description);
@@ -157,7 +157,7 @@ class DaysLeft extends WidgetBase {
         }
     }
 }
-dojoDeclare("DaysLeft.widget.DaysLeft", [WidgetBase], function (Source: any) {
+dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
@@ -166,5 +166,3 @@ dojoDeclare("DaysLeft.widget.DaysLeft", [WidgetBase], function (Source: any) {
     }
     return result;
 }(DaysLeft));
-
-
