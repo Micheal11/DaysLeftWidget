@@ -18,7 +18,7 @@ class DaysLeft extends WidgetBase {
     private insertedDate: string;
 
     postCreate() {
-        //this.customize();
+        this.customize();
     }
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
@@ -28,9 +28,9 @@ class DaysLeft extends WidgetBase {
             callback();
         }
     }
-    resize(box: any) {
+    /*resize(box: any) {
         logger.debug(this.id + ".resize");
-    }
+    }*/
     private customize() {
         domConstruct.create("input", {
             class: "Event-Name",
