@@ -14,8 +14,12 @@ class DaysLeft extends WidgetBase {
     public Deadline: any;
     private contextObject: mendix.lib.MxObject;
     private input: string;
+    private dateInput: string;
+    private currentDay: number;
     private insertedEvent: string;
+    private displayDate: string;
     private insertedDate: string;
+    private second: string;
 
     postCreate() {
         this.customize();
@@ -27,9 +31,6 @@ class DaysLeft extends WidgetBase {
         if (callback) {
             callback();
         }
-    }
-    resize(box: any) {
-        logger.debug(this.id + ".resize");
     }
     private customize() {
         domConstruct.create("input", {
@@ -140,13 +141,13 @@ class DaysLeft extends WidgetBase {
                 },
                 params: {
                     applyto: "selection",
-                    guids: [guid]
+                    guids: [ guid ]
                 }
             }, this);
         }
     }
 }
-dojoDeclare("DaysLeft.widget.DaysLeft", [WidgetBase], function (Source: any) {
+dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {

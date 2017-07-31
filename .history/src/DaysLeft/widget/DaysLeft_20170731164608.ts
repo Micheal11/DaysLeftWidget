@@ -28,9 +28,6 @@ class DaysLeft extends WidgetBase {
             callback();
         }
     }
-    resize(box: any) {
-        logger.debug(this.id + ".resize");
-    }
     private customize() {
         domConstruct.create("input", {
             class: "Event-Name",
@@ -140,13 +137,13 @@ class DaysLeft extends WidgetBase {
                 },
                 params: {
                     applyto: "selection",
-                    guids: [guid]
+                    guids: [ guid ]
                 }
             }, this);
         }
     }
 }
-dojoDeclare("DaysLeft.widget.DaysLeft", [WidgetBase], function (Source: any) {
+dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
