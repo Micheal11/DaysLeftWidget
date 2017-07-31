@@ -19,6 +19,7 @@ class DaysLeft extends WidgetBase {
     private x: string;
     displayDate: string;
     private y: string;
+    private first: string;
 
     postCreate() {
         // this.customize();
@@ -92,11 +93,16 @@ class DaysLeft extends WidgetBase {
         }
     }
 
-    private calculateDaysLeft(first: string, second: string): number {
-        dom.byId("DateName").value;
-        const fir = this.parseDate(first);
+    private calculateDaysLeft( second: string): number {
+        this.first = dom.byId("DateName").value;
+        const myDate = new Date();
+        let myMonth = myDate.getMonth();
+        let myDay = myDate.getDay();
+        let myYear = myDate.getFullYear;
+        let today = myMonth + "/" + myDay + "/" + myYear;
+        second = today;
+        const fir = this.parseDate(this.first);
         const sec = this.parseDate(second);
-        alert(Math.round((sec - fir) / (1000 * 60 * 60 * 24)));
         return Math.round((sec - fir) / (1000 * 60 * 60 * 24));
     }
     private parseDate(str: string): any {
