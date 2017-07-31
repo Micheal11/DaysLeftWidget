@@ -201,8 +201,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
             var myDay = myDate.getDay();
             var myYear = myDate.getFullYear();
             var today = myMonth + "/" + myDay + "/" + myYear;
-            alert(myYear);
-            alert(today);
             var fir = this.parseDate(this.first);
             alert(fir);
             var sec = this.parseDate(today);
@@ -210,10 +208,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
             alert(typeof (sec));
             return Math.round((fir - sec) / (1000 * 60 * 60 * 24));
         };
-        DaysLeft.prototype.parseDate = function (str) {
-            var mdy;
-            mdy = str.split("/");
-            return new Date(mdy[2], mdy[0] - 1, mdy[1]);
+        DaysLeft.prototype.parseDate = function (theDate) {
+            var useDate;
+            useDate = theDate.split("/");
+            return new Date(useDate[2], useDate[0] - 1, useDate[1]);
         };
         DaysLeft.prototype.createEvent = function () {
             var _this = this;

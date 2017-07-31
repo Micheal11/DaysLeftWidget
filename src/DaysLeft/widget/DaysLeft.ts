@@ -100,8 +100,6 @@ class DaysLeft extends WidgetBase {
         const myDay = myDate.getDay();
         const myYear = myDate.getFullYear();
         const today = myMonth + "/" + myDay + "/" + myYear;
-        alert(myYear);
-        alert(today);
         // this.second = today;
         const fir = this.parseDate(this.first);
         alert(fir);
