@@ -16,7 +16,7 @@ class DaysLeft extends WidgetBase {
     private input: string;
     private dateInput: string;
     private currentDay: number;
-    private insertedEvent: string;
+    private x: string;
     private displayDate: string;
     private first: string;
     private second: string;
@@ -59,6 +59,7 @@ class DaysLeft extends WidgetBase {
             type: "button",
             value: "save"
         }, this.domNode).addEventListener("click", () => {
+            // this.calculateDaysLeft();
             this.createEvent();
             this.display();
         }, false);
@@ -74,11 +75,12 @@ class DaysLeft extends WidgetBase {
         domConstruct.create("div", {
             class: "days-left-widget",
             id: "dayswidget"
+            // tslint:disable-next-line:max-line-length
         }, this.domNode);
     }
     display() {
-        this.insertedEvent = dom.byId("EventName").value;
-        dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +
+        this.x = dom.byId("EventName").value;
+        dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.x +
             "</td></tr> <tr><td allign='center'>" + this.calculateDaysLeft() + "</td></tr></table>";
     }
     updateRendering() {
@@ -98,6 +100,7 @@ class DaysLeft extends WidgetBase {
         const myDay = myDate.getDay();
         const myYear = myDate.getFullYear();
         const today = myMonth + "/" + myDay + "/" + myYear;
+        // this.second = today;
 
         const mendixDate = new Date(this.first);
         const mendixMonth = mendixDate.getMonth() + 1;
@@ -105,7 +108,9 @@ class DaysLeft extends WidgetBase {
         const mendixYear = mendixDate.getFullYear();
         const mendixToday = mendixMonth + "/" + mendixDay + "/" + mendixYear;
 
+       // const fir = this.parseDate(this.first);
         alert(mendixToday);
+       // const sec = this.parseDate(today);
         alert(today);
         alert(typeof (this.parseDate(today)));
         alert(typeof (mendixToday));
