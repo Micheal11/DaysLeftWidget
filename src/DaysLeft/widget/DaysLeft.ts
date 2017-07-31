@@ -20,6 +20,7 @@ class DaysLeft extends WidgetBase {
     displayDate: string;
     private y: string;
     private first: string;
+    private second: string;
 
     postCreate() {
         // this.customize();
@@ -74,15 +75,14 @@ class DaysLeft extends WidgetBase {
         });
         domConstruct.create("div", {
             class: "days-left-widget",
-            id: "dayswidget",
+            id: "dayswidget"
             // tslint:disable-next-line:max-line-length
         }, this.domNode);
     }
     display() {
         this.x = dom.byId("EventName").value;
-        this.y = dom.byId("DateName").value;
         dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.x +
-            "</td></tr> <tr><td allign='center'>" + this.y + "</td></tr></table>";
+            "</td></tr> <tr><td allign='center'>" + this.calculateDaysLeft() + "</td></tr></table>";
     }
     updateRendering() {
         this.customize();
@@ -93,22 +93,27 @@ class DaysLeft extends WidgetBase {
         }
     }
 
-    private calculateDaysLeft( second: string): number {
+    private calculateDaysLeft( ): number {
         this.first = dom.byId("DateName").value;
         const myDate = new Date();
-        let myMonth = myDate.getMonth();
-        let myDay = myDate.getDay();
-        let myYear = myDate.getFullYear;
-        let today = myMonth + "/" + myDay + "/" + myYear;
-        second = today;
+        const myMonth = myDate.getMonth() + 1;
+        const myDay = myDate.getDay();
+        const myYear = myDate.getFullYear();
+        const today = myMonth + "/" + myDay + "/" + myYear;
+        alert(myYear);
+        alert(today);
+       // this.second = today;
         const fir = this.parseDate(this.first);
-        const sec = this.parseDate(second);
-        return Math.round((sec - fir) / (1000 * 60 * 60 * 24));
+        alert(fir);
+        const sec = this.parseDate(today);
+        alert(sec);
+        alert(typeof(sec));
+        return Math.round((fir - sec) / (1000 * 60 * 60 * 24));
     }
     private parseDate(str: string): any {
-        let mdy: any;
-        mdy = str.split("/");
-        return new Date(mdy[2], mdy[0] - 1, mdy[1]);
+        let theDate: any;
+        theDate = str.split("/");
+        return new Date(theDate[2], theDate[0] - 1, theDate[1]);
     }
 
     private createEvent(): void {

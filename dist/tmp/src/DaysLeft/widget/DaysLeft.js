@@ -179,14 +179,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
             });
             domConstruct.create("div", {
                 class: "days-left-widget",
-                id: "dayswidget",
+                id: "dayswidget"
             }, this.domNode);
         };
         DaysLeft.prototype.display = function () {
             this.x = dom.byId("EventName").value;
-            this.y = dom.byId("DateName").value;
             dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.x +
-                "</td></tr> <tr><td allign='center'>" + this.y + "</td></tr></table>";
+                "</td></tr> <tr><td allign='center'>" + this.calculateDaysLeft() + "</td></tr></table>";
         };
         DaysLeft.prototype.updateRendering = function () {
             this.customize();
@@ -195,12 +194,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
             else {
             }
         };
-        DaysLeft.prototype.calculateDaysLeft = function (first, second) {
-            dom.byId("DateName").value;
-            var fir = this.parseDate(first);
-            var sec = this.parseDate(second);
-            alert(Math.round((sec - fir) / (1000 * 60 * 60 * 24)));
-            return Math.round((sec - fir) / (1000 * 60 * 60 * 24));
+        DaysLeft.prototype.calculateDaysLeft = function () {
+            this.first = dom.byId("DateName").value;
+            var myDate = new Date();
+            var myMonth = myDate.getMonth() + 1;
+            var myDay = myDate.getDay();
+            var myYear = myDate.getFullYear();
+            var today = myMonth + "/" + myDay + "/" + myYear;
+            alert(myYear);
+            alert(today);
+            var fir = this.parseDate(this.first);
+            alert(fir);
+            var sec = this.parseDate(today);
+            alert(sec);
+            alert(typeof (sec));
+            return Math.round((fir - sec) / (1000 * 60 * 60 * 24));
         };
         DaysLeft.prototype.parseDate = function (str) {
             var mdy;
