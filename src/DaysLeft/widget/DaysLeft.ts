@@ -58,7 +58,7 @@ class DaysLeft extends WidgetBase {
             type: "button",
             value: "save"
         }, this.domNode).addEventListener("click", () => {
-            this.calculateDaysLeft();
+            // this.calculateDaysLeft();
             this.createEvent();
             this.display();
         }, false);
