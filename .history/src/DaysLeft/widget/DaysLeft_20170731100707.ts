@@ -16,14 +16,12 @@ class DaysLeft extends WidgetBase {
     private input: string;
     private dateInput: string;
     private currentDay: number;
-    private x: string;
-    displayDate: string;
-    private y: string;
-    private first: string;
-    private second: string;
+    private displayDate: string;
+    private currentMonth: number;
+    private currentYear: number;
 
     postCreate() {
-        // this.customize();
+        this.customize();
     }
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
@@ -34,10 +32,13 @@ class DaysLeft extends WidgetBase {
         }
     }
     private customize() {
+        domConstruct.create("div", {
+            innerHTML: "<br/>"
+        }, this.domNode);
         domConstruct.create("input", {
             class: "Event-Name",
             id: "EventName",
-            placeholder: "Enter Your Event",
+            placeHolder: "Enter your event",
             textValue: "Insert any string",
             type: "text"
         }, this.domNode);
@@ -47,7 +48,6 @@ class DaysLeft extends WidgetBase {
         domConstruct.create("input", {
             class: "Date-Of-Event",
             id: "DateName",
-            placeholder: "Choose Your Date",
             textValue: "Input date",
             type: "date"
         }, this.domNode);
@@ -60,9 +60,8 @@ class DaysLeft extends WidgetBase {
             type: "button",
             value: "save"
         }, this.domNode).addEventListener("click", () => {
-            // this.calculateDaysLeft();
+            this.calculateDaysLeft("3/4/2017", "2/2/2017");
             this.createEvent();
-            this.display();
         }, false);
         domConstruct.create("input", {
             class: "buttonTwo",
@@ -75,45 +74,30 @@ class DaysLeft extends WidgetBase {
         });
         domConstruct.create("div", {
             class: "days-left-widget",
-            id: "dayswidget"
-            // tslint:disable-next-line:max-line-length
+            id: "daysHtml",
+            innerHTML: "<span> Event </span>"
         }, this.domNode);
     }
-    display() {
-        this.x = dom.byId("EventName").value;
-        dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.x +
-            "</td></tr> <tr><td allign='center'>" + this.calculateDaysLeft() + "</td></tr></table>";
-    }
     updateRendering() {
-        this.customize();
         if (this.contextObject) {
-            // comment
+            domConstruct.empty(this.domNode);
+            this.customize();
         } else {
             // comment
         }
     }
 
-    private calculateDaysLeft(): number {
-        this.first = dom.byId("DateName").value;
-        const myDate = new Date();
-        const myMonth = myDate.getMonth() + 1;
-        const myDay = myDate.getDay();
-        const myYear = myDate.getFullYear();
-        const today = myMonth + "/" + myDay + "/" + myYear;
-        alert(myYear);
-        alert(today);
-        // this.second = today;
-        const fir = this.parseDate(this.first);
-        alert(fir);
-        const sec = this.parseDate(today);
-        alert(sec);
-        alert(typeof (sec));
-        return Math.round((fir - sec) / (1000 * 60 * 60 * 24));
+    private calculateDaysLeft(first: string, second: string): number {
+        dom.byId("DateName").value;
+        const fir = this.parseDate(first);
+        const sec = this.parseDate(second);
+        alert(Math.round((sec - fir) / (1000 * 60 * 60 * 24)));
+        return Math.round((sec - fir) / (1000 * 60 * 60 * 24));
     }
-    private parseDate(theDate: string): any {
-        let useDate: any;
-        useDate = theDate.split("/");
-        return new Date(useDate[2], useDate[0] - 1, useDate[1]);
+    private parseDate(str: string): any {
+        let mdy: any;
+        mdy = str.split("/");
+        return new Date(mdy[2], mdy[0] - 1, mdy[1]);
     }
 
     private createEvent(): void {
@@ -146,12 +130,12 @@ class DaysLeft extends WidgetBase {
                         cb(objs);
                     }
                 },
+                error: (error) => {
+                    // console.debug(error.description);
+                },
                 params: {
                     applyto: "selection",
                     guids: [ guid ]
-                },
-                error: (error) => {
-                    // console.debug(error.description);
                 }
             }, this);
         }
