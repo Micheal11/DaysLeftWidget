@@ -98,7 +98,7 @@ class DaysLeft extends WidgetBase {
         const differenceInMicrosec = date2Microsec - date1Microsec;
        // return Math.round(differenceInMicrosec / oneDay);
         const futureDate = new Date(this.insertedDate);
-        const mendixDate = new Date(futureDate.getFullYear(), futureDate.getMonth(), futureDate.getDate());
+        const July31st2018 = new Date(futureDate.getFullYear(), futureDate.getMonth(), futureDate.getDate());
         const TodayDate = new Date();
     }
 

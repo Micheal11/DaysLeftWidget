@@ -18,7 +18,7 @@ class DaysLeft extends WidgetBase {
     private currentDay: number;
     private insertedEvent: string;
     private displayDate: string;
-    private insertedDate: string;
+    private first: string;
     private second: string;
 
     postCreate() {
@@ -79,7 +79,7 @@ class DaysLeft extends WidgetBase {
     display() {
         this.insertedEvent = dom.byId("EventName").value;
         dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +
-            "</td></tr> <tr><td allign='center'>" + this.DatedaysBetween() + "</td></tr></table>";
+            "</td></tr> <tr><td allign='center'>" + this.calculateDaysLeft() + "</td></tr></table>";
     }
     updateRendering() {
         this.customize();
@@ -90,16 +90,33 @@ class DaysLeft extends WidgetBase {
         }
     }
 
-    DatedaysBetween(date1: Date, date2: Date): number {
-        this.insertedDate = dom.byId("DateName").value;
-        const oneDay = 1000 * 60 * 60 * 24;
-        const date1Microsec = date1.getTime();
-        const date2Microsec = date2.getTime();
-        const differenceInMicrosec = date2Microsec - date1Microsec;
-       // return Math.round(differenceInMicrosec / oneDay);
-        const futureDate = new Date(this.insertedDate);
-        const mendixDate = new Date(futureDate.getFullYear(), futureDate.getMonth(), futureDate.getDate());
-        const TodayDate = new Date();
+    private calculateDaysLeft(): number {
+        this.first = dom.byId("DateName").value;
+        alert(this.first);
+        const myDate = new Date();
+        const today = this.parseDate((myDate).toString());
+        // const myMonth = myDate.getMonth() + 1;
+        // const myDay = myDate.getDay();
+        // const myYear = myDate.getFullYear();
+        // const today = myMonth + "/" + myDay + "/" + myYear;
+
+        const mendixDate = new Date(this.first);
+        const mendixToday = this.parseDate((myDate).toString());
+        // const mendixMonth = mendixDate.getMonth() + 1;
+        // const mendixDay = mendixDate.getDay();
+        // const mendixYear = mendixDate.getFullYear();
+        // const mendixToday = mendixMonth + "/" + mendixDay + "/" + mendixYear;
+
+        alert(mendixToday);
+        alert(today);
+        alert(typeof (this.parseDate(today)));
+        alert(typeof (mendixToday));
+        return Math.round(((mendixToday) - (today)) / (1000 * 60 * 60 * 24));
+    }
+    private parseDate(theDate: string): any {
+        let useDate: any;
+        useDate = theDate.split("/");
+        return new Date(useDate[2], useDate[0] - 1, useDate[1]);
     }
 
     private createEvent(): void {
@@ -132,12 +149,12 @@ class DaysLeft extends WidgetBase {
                         cb(objs);
                     }
                 },
-                error: (error) => {
-                    // console.debug(error.description);
-                },
                 params: {
                     applyto: "selection",
                     guids: [ guid ]
+                },
+                error: (error) => {
+                    // console.debug(error.description);
                 }
             }, this);
         }
