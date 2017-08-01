@@ -1,6 +1,6 @@
 ShellTUI: Unable to read from stdin...exiting.
-Jul 30, 2017 2:31:09 PM java.util.prefs.WindowsPreferences <init>
+Aug 01, 2017 5:18:46 PM java.util.prefs.WindowsPreferences <init>
 WARNING: Could not open/create prefs root node Software\JavaSoft\Prefs at root 0x80000002. Windows RegCreateKeyEx(...) returned error code 5.
--> 
 
+-> 
 
