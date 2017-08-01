@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("dojo/_base/declare"), require("dojo/dom"), require("mxui/widget/_WidgetBase"));
+		module.exports = factory(require("dojo/_base/declare"), require("dojo/dom"), require("dojo/dom-construct"), require("dojo/html"), require("mxui/widget/_WidgetBase"));
 	else if(typeof define === 'function' && define.amd)
-		define(["dojo/_base/declare", "dojo/dom", "mxui/widget/_WidgetBase"], factory);
+		define(["dojo/_base/declare", "dojo/dom", "dojo/dom-construct", "dojo/html", "mxui/widget/_WidgetBase"], factory);
 	else {
-		var a = typeof exports === 'object' ? factory(require("dojo/_base/declare"), require("dojo/dom"), require("mxui/widget/_WidgetBase")) : factory(root["dojo/_base/declare"], root["dojo/dom"], root["mxui/widget/_WidgetBase"]);
+		var a = typeof exports === 'object' ? factory(require("dojo/_base/declare"), require("dojo/dom"), require("dojo/dom-construct"), require("dojo/html"), require("mxui/widget/_WidgetBase")) : factory(root["dojo/_base/declare"], root["dojo/dom"], root["dojo/dom-construct"], root["dojo/html"], root["mxui/widget/_WidgetBase"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -102,6 +102,18 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = (this && this.__extends) || (function () {
@@ -114,7 +126,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(1), __webpack_require__(3), __webpack_require__(2), __webpack_require__(0)], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, dojoDeclare, WidgetBase, dom) {
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(1), __webpack_require__(3), __webpack_require__(5), __webpack_require__(4), __webpack_require__(2), __webpack_require__(0)], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, dojoDeclare, domConstruct, WidgetBase, dojoHtml, dom) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var DaysLeft = (function (_super) {
@@ -123,6 +135,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
             return _super !== null && _super.apply(this, arguments) || this;
         }
         DaysLeft.prototype.postCreate = function () {
+            this.customize();
         };
         DaysLeft.prototype.update = function (object, callback) {
             this.contextObject = object;
@@ -132,20 +145,27 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = 
             }
         };
         DaysLeft.prototype.customize = function () {
+            domConstruct.create("div", {
+                class: "days-left-widget",
+                id: "dayswidget"
+            }, this.domNode);
         };
         DaysLeft.prototype.display = function () {
             dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.eventName +
-                "</td></tr > <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
+                "</td></tr > <tr><td allign='center'>" + this.computeDays(this.enteredDate) + "</td></tr></table>";
         };
         DaysLeft.prototype.updateRendering = function () {
-            this.customize();
             if (this.contextObject) {
+                domConstruct.empty(this.domNode);
+                this.enteredEvent = this.contextObject.get(this.eventName);
+                dojoHtml.set(this.domNode, this.computeDays(this.enteredDate));
+                this.customize();
             }
             else {
             }
         };
-        DaysLeft.prototype.computeDays = function () {
-            var futureDate = new Date(this.dateOfEvent);
+        DaysLeft.prototype.computeDays = function (futureDate) {
+            futureDate = new Date(this.dateOfEvent);
             var mendixDate = new Date(futureDate.getFullYear(), futureDate.getMonth(), futureDate.getDate());
             var TodayDate = new Date();
             return (this.DatedaysBetween(TodayDate, futureDate));

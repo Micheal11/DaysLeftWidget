@@ -527,7 +527,7 @@ H1OPqcfU4+px9Tj6nH1OPqcfU4+px9Tj6nH1OAd21PYCP//Z
             <category>Data Source</category>
             <description>This is the Date of the event</description>
             <attributeTypes>
-                <attributeType name="Date" />
+                <attributeType name="DateTime" />
             </attributeTypes>
         </property>
         <property key="MicroflowToRun" type="microflow" required="false" defaultValue="">

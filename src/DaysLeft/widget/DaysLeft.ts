@@ -7,7 +7,7 @@ import * as dojoHtml from "dojo/html";
 import * as dom from "dojo/dom";
 import "./ui/DaysLeft.css";
 class DaysLeft extends WidgetBase {
-    // Date: string;
+    
     // Name: string;
     MicroflowToRun: string;
     public Deadline: any;
@@ -16,11 +16,13 @@ class DaysLeft extends WidgetBase {
     // private dateInput: string;
     // private currentDay: number;
     eventName: string;
-    dateOfEvent: string;
+    dateOfEvent: Date;
     // private insertedDate: string;
     private second: string;
+    private enteredDate: Date;
+    private enteredEvent: string;
     postCreate() {
-        // this.customize();
+        this.customize();
     }
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
@@ -68,27 +70,30 @@ class DaysLeft extends WidgetBase {
         //         this.ExecuteMicroflow(this.MicroflowToRun, this.contextObject.getGuid());
         //     }
         // });
-        // domConstruct.create("div", {
-        //     class: "days-left-widget",
-        //     id: "dayswidget"
-        // }, this.domNode);
+        domConstruct.create("div", {
+            class: "days-left-widget",
+            id: "dayswidget"
+        }, this.domNode);
     }
     display() {
         // this.insertedEvent = dom.byId("EventName").value;
         dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.eventName +
-            "</td></tr > <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
+            "</td></tr > <tr><td allign='center'>" + this.computeDays(this.enteredDate) + "</td></tr></table>";
     }
     updateRendering() {
-        this.customize();
         if (this.contextObject) {
+            domConstruct.empty(this.domNode);
+            this.enteredEvent = this.contextObject.get(this.eventName) as string;
+            dojoHtml.set(this.domNode, this.computeDays(this.enteredDate));
+            this.customize();
             // comment
         } else {
             // comment
         }
     }
-    private computeDays(): number {
+    private computeDays(futureDate: Date): any {
         // this.insertedDate = dom.byId("DateName").value;
-        const futureDate = new Date(this.dateOfEvent);
+        futureDate = new Date(this.dateOfEvent);
         const mendixDate = new Date(futureDate.getFullYear(), futureDate.getMonth(), futureDate.getDate());
         const TodayDate = new Date();
         return (this.DatedaysBetween(TodayDate, futureDate));

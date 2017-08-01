@@ -155,7 +155,7 @@ public class Deadline
 	/**
 	 * @return value of Date
 	 */
-	public final java.lang.String getDate()
+	public final java.util.Date getDate()
 	{
 		return getDate(getContext());
 	}
@@ -164,16 +164,16 @@ public class Deadline
 	 * @param context
 	 * @return value of Date
 	 */
-	public final java.lang.String getDate(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.util.Date getDate(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Date.toString());
+		return (java.util.Date) getMendixObject().getValue(context, MemberNames.Date.toString());
 	}
 
 	/**
 	 * Set value of Date
 	 * @param date
 	 */
-	public final void setDate(java.lang.String date)
+	public final void setDate(java.util.Date date)
 	{
 		setDate(getContext(), date);
 	}
@@ -183,7 +183,7 @@ public class Deadline
 	 * @param context
 	 * @param date
 	 */
-	public final void setDate(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String date)
+	public final void setDate(com.mendix.systemwideinterfaces.core.IContext context, java.util.Date date)
 	{
 		getMendixObject().setValue(context, MemberNames.Date.toString(), date);
 	}

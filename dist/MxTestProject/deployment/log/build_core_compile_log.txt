@@ -1,7 +1,6 @@
 Buildfile: F:\GRCassignment\newProject\Final\new\DaysLeftWidget\dist\MxTestProject\deployment\build_core.xml
 
 compile:
-    [javac] Warning: testsuite\proxies\Deadline.java modified in the future.
 
 build:
       [bnd] # addAll 'deployment/run/bnd.bnd' with ,
@@ -13,7 +12,7 @@ build:
       [bnd] # project (project.jar) 39 (not modified)
 
 BUILD SUCCESSFUL
-Total time: 7 seconds
+Total time: 1 second
 
 
 
