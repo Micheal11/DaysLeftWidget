@@ -38,14 +38,17 @@ class DaysLeft extends WidgetBase {
         }, this.domNode);
     }
     public computeDays(): number {
+        const futureDate = new Date(7, 7, 2018 );
+        this.futureDate = (this.insertedDate);
         // tslint:disable-next-line:max-line-length
-        const mendixDate = new Date(this.insertedDate.getMonth(), this.insertedDate.getDate(), this.insertedDate.getFullYear());
+        const mendixDate = new Date(this.futureDate.getMonth(), this.futureDate.getDate(), this.futureDate.getFullYear());
         const currentDate = new Date();
         return (this.DatedaysBetween(currentDate, mendixDate));
     }
     private DatedaysBetween(date1: Date, date2: Date): number {
         const oneDay = 1000 * 60 * 60 * 24;
         const date1Microsec = date1.getTime();
+        alert("one day" + date1Microsec);
         const date2Microsec = date2.getTime();
         const differenceInMicrosec = date2Microsec - date1Microsec;
         return Math.ceil(differenceInMicrosec / oneDay);
@@ -77,13 +80,13 @@ class DaysLeft extends WidgetBase {
                 },
                 params: {
                     applyto: "selection",
-                    guids: [ guid ]
+                    guids: [guid]
                 }
             }, this);
         }
     }
 }
-dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {
+dojoDeclare("DaysLeft.widget.DaysLeft",  [ WidgetBase ], function(Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {

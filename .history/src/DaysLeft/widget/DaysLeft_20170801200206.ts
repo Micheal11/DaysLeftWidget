@@ -46,6 +46,7 @@ class DaysLeft extends WidgetBase {
     private DatedaysBetween(date1: Date, date2: Date): number {
         const oneDay = 1000 * 60 * 60 * 24;
         const date1Microsec = date1.getTime();
+        alert("one day" + date1Microsec);
         const date2Microsec = date2.getTime();
         const differenceInMicrosec = date2Microsec - date1Microsec;
         return Math.ceil(differenceInMicrosec / oneDay);
@@ -83,7 +84,7 @@ class DaysLeft extends WidgetBase {
         }
     }
 }
-dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {
+dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function (Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
