@@ -1,4 +1,4 @@
-.button-one{
+/*.button-one{
     background-color:#44c767;
 	-moz-border-radius:24px;
 	-webkit-border-radius:24px;
@@ -12,15 +12,15 @@
 	padding:5px 15px;
 	text-decoration:none;
 	text-shadow:-1px -1px 3px #2f6627;
-}
-.button-one:hover {
+}*/
+/*.button-one:hover {
 	background-color:#5cbf2a;
-}
-.button-one:active {
+}*/
+/*.button-one:active {
 	position:relative;
 	top:1px;
-}
-.button-two{
+}*/
+/*.button-two{
     background-color:#c62d1f;
 	-moz-border-radius:24px;
 	-webkit-border-radius:24px;
@@ -34,15 +34,15 @@
 	padding:5px 15px;
 	text-decoration:none;
 	text-shadow:-1px -1px 3px #810e05;
-}
-.button-two:hover {
+}*/
+/*.button-two:hover {
 	background-color:#f24437;
-}
-.button-two:active { 
+}*/
+/*.button-two:active { 
 	position:relative;
 	top:1px;
-}
- .event-name {
+}*/
+ /*.event-name {
     width: 60%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -51,24 +51,30 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-}
-.date-of-event {
+}*/
+/*.date-of-event {
     width: 60%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    font-family: 'Times New Roman';
+	font-family: 'Times New Roman';
+	flood-color: #800000;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-}
+}*/
 .days-left-widget {
-    border: 5px solid RGB(128, 0, 128);
+    border: 5px solid #808080;
 	float: right;
 	padding: 25px;
-	background-color: #FF00FF;
+	background-color: #C0C0C0;
 	opacity: 0.9;
-    border-radius: 05px;
+	font-style: italic;
+	text-align:center;
+	font-family: 'Raleway', sans-serif;
+	border-radius: 05px;
+	stroke-linecap: square;
+	flood-color: #800000;
 	transition: 100ms;
 	width: 15%;
 	height: 15%;

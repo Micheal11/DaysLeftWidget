@@ -9,8 +9,11 @@ import "./ui/DaysLeft.css";
 
 class DaysLeft extends WidgetBase {
     DateInserted: any;
-    NameOfEvent: string;
+    Name: string;
+    public Deadline: any;
+    private futureDate: Date;
     private contextObject: mendix.lib.MxObject;
+    private input: string;
     private insertedEvent: string;
     private insertedDate: any;
     private nextDate: Date;
@@ -38,7 +41,8 @@ class DaysLeft extends WidgetBase {
         }, this.domNode);
     }
     public computeDays(): number {
-        this.mendixDateGot = this.nextDate;
+        // tslint:disable-next-line:max-line-length
+        this.mendixDateGot = this.nextDate;//new Date(this.nextDate.getMonth(), this.nextDate.getDate(), this.nextDate.getFullYear());
         this.currentDate = new Date();
         return (this.DatedaysBetween(this.currentDate, this.mendixDateGot));
     }
@@ -52,17 +56,16 @@ class DaysLeft extends WidgetBase {
 
     updateRendering() {
         if (this.contextObject) {
-
-            this.insertedEvent = this.contextObject.get(this.NameOfEvent).toString();
+            this.insertedEvent = this.contextObject.get(this.Name).toString();
             this.insertedDate = this.contextObject.get(this.DateInserted);
+            // alert(insertedDate);
+            // alert(typeof(insertedDate));
             const parseDate = Number(this.insertedDate);
             this.nextDate = new Date(parseDate);
             dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +
                 "</td></tr> <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
-            dojoStyle.set(this.domNode, "display", "block");
-
         } else {
-            dojoStyle.set(this.domNode, "display", "none");
+            // comment
         }
     }
 

@@ -9,7 +9,7 @@ import "./ui/DaysLeft.css";
 
 class DaysLeft extends WidgetBase {
     DateInserted: any;
-    NameOfEvent: string;
+    NameofEvent: string;
     private contextObject: mendix.lib.MxObject;
     private insertedEvent: string;
     private insertedDate: any;
@@ -23,7 +23,6 @@ class DaysLeft extends WidgetBase {
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
         this.updateRendering();
-
         if (callback) {
             callback();
         }
@@ -52,17 +51,14 @@ class DaysLeft extends WidgetBase {
 
     updateRendering() {
         if (this.contextObject) {
-
-            this.insertedEvent = this.contextObject.get(this.NameOfEvent).toString();
+            this.insertedEvent = this.contextObject.get(this.NameofEvent).toString();
             this.insertedDate = this.contextObject.get(this.DateInserted);
             const parseDate = Number(this.insertedDate);
             this.nextDate = new Date(parseDate);
             dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +
                 "</td></tr> <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
-            dojoStyle.set(this.domNode, "display", "block");
-
         } else {
-            dojoStyle.set(this.domNode, "display", "none");
+            // comment
         }
     }
 

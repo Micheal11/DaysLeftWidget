@@ -9,7 +9,7 @@ import "./ui/DaysLeft.css";
 
 class DaysLeft extends WidgetBase {
     DateInserted: any;
-    NameOfEvent: string;
+    Name: string;
     private contextObject: mendix.lib.MxObject;
     private insertedEvent: string;
     private insertedDate: any;
@@ -53,7 +53,7 @@ class DaysLeft extends WidgetBase {
     updateRendering() {
         if (this.contextObject) {
 
-            this.insertedEvent = this.contextObject.get(this.NameOfEvent).toString();
+            this.insertedEvent = this.contextObject.get(this.Name).toString();
             this.insertedDate = this.contextObject.get(this.DateInserted);
             const parseDate = Number(this.insertedDate);
             this.nextDate = new Date(parseDate);

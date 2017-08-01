@@ -52,7 +52,6 @@ class DaysLeft extends WidgetBase {
 
     updateRendering() {
         if (this.contextObject) {
-
             this.insertedEvent = this.contextObject.get(this.NameOfEvent).toString();
             this.insertedDate = this.contextObject.get(this.DateInserted);
             const parseDate = Number(this.insertedDate);

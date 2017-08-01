@@ -8,14 +8,14 @@ import * as dom from "dojo/dom";
 import "./ui/DaysLeft.css";
 
 class DaysLeft extends WidgetBase {
-    DateInserted: any;
-    NameOfEvent: string;
+    Date: Date;
+    Name: string;
+    MicroflowToRun: string;
+    public Deadline: any;
     private contextObject: mendix.lib.MxObject;
+    private input: string;
     private insertedEvent: string;
-    private insertedDate: any;
-    private nextDate: Date;
-    private mendixDateGot: Date;
-    private currentDate: Date;
+    private insertedDate: Date;
 
     postCreate() {
         this.customize();
@@ -32,15 +32,61 @@ class DaysLeft extends WidgetBase {
         logger.debug(this.id + ".resize");
     }
     private customize() {
+        domConstruct.create("input", {
+            class: "event-name",
+            id: "EventName",
+            placeholder: "Enter Your Event",
+            textValue: "Insert any string",
+            type: "text"
+        }, this.domNode);
+        domConstruct.create("div", {
+            innerHTML: "<br/>"
+        }, this.domNode);
+        domConstruct.create("input", {
+            class: "date-of-event",
+            id: "DateName",
+            placeholder: "Choose Your Date",
+            textValue: "Input date",
+            type: "date"
+        }, this.domNode);
+        domConstruct.create("div", {
+            innerHTML: "<br/>"
+        }, this.domNode);
+        domConstruct.create("input", {
+            class: "button-one",
+            id: "showButton",
+            type: "button",
+            value: "Display"
+        }, this.domNode).addEventListener("click", () => {
+            this.display();
+        }, false);
+        domConstruct.create("input", {
+            class: "button-two",
+            type: "button",
+            value: "Cancel"
+        }, this.domNode).addEventListener("click", () => {
+            if (this.MicroflowToRun !== "") {
+                this.ExecuteMicroflow(this.MicroflowToRun, this.contextObject.getGuid());
+            }
+        });
         domConstruct.create("div", {
             class: "days-left-widget",
             id: "dayswidget"
         }, this.domNode);
     }
+    display() {
+        //this.insertedEvent = dom.byId("EventName").value;
+        dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +
+            "</td></tr> <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
+    }
     public computeDays(): number {
-        this.mendixDateGot = this.nextDate;
-        this.currentDate = new Date();
-        return (this.DatedaysBetween(this.currentDate, this.mendixDateGot));
+        this.insertedDate = this.Date;
+        alert(typeof(Date));
+        const futureDate = new Date(this.insertedDate);
+        const mendixDate = new Date(futureDate.getFullYear(), futureDate.getMonth(), futureDate.getDate());
+        const TodayDate = new Date();
+        alert(typeof(TodayDate));
+        return (this.DatedaysBetween(TodayDate, futureDate));
     }
     private DatedaysBetween(date1: Date, date2: Date): number {
         const oneDay = 1000 * 60 * 60 * 24;
@@ -49,20 +95,14 @@ class DaysLeft extends WidgetBase {
         const differenceInMicrosec = date2Microsec - date1Microsec;
         return Math.ceil(differenceInMicrosec / oneDay);
     }
-
     updateRendering() {
+        //this.customize();
         if (this.contextObject) {
-
-            this.insertedEvent = this.contextObject.get(this.NameOfEvent).toString();
-            this.insertedDate = this.contextObject.get(this.DateInserted);
-            const parseDate = Number(this.insertedDate);
-            this.nextDate = new Date(parseDate);
+            this.insertedEvent = this.contextObject.get(this.Name).toString();
             dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +
-                "</td></tr> <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
-            dojoStyle.set(this.domNode, "display", "block");
-
+            "</td></tr> <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
         } else {
-            dojoStyle.set(this.domNode, "display", "none");
+            // comment
         }
     }
 

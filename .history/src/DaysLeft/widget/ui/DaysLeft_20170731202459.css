@@ -64,10 +64,8 @@
 }
 .days-left-widget {
     border: 5px solid RGB(128, 0, 128);
-	float: right;
-	padding: 25px;
-	background-color: #FF00FF;
-	opacity: 0.9;
+    float: right;
+    padding: 25px;
     border-radius: 05px;
 	transition: 100ms;
 	width: 15%;

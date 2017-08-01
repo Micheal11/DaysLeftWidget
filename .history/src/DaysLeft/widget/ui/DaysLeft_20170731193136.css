@@ -42,8 +42,8 @@
 	position:relative;
 	top:1px;
 }
- .event-name {
-    width: 60%;
+ .Event-Name {
+    width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -52,8 +52,8 @@
     border-radius: 4px;
     box-sizing: border-box;
 }
-.date-of-event {
-    width: 60%;
+.Date-Of-Event {
+    width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -64,14 +64,12 @@
 }
 .days-left-widget {
     border: 5px solid RGB(128, 0, 128);
-	float: right;
-	padding: 25px;
-	background-color: #FF00FF;
-	opacity: 0.9;
+    float: right;
+    padding: 25px;
     border-radius: 05px;
 	transition: 100ms;
-	width: 15%;
-	height: 15%;
+	width: 20%;
+	height: 20%;
 }
 .set-to-yellow{
 	background-color: #FFFF00;

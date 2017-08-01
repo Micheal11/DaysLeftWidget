@@ -57,16 +57,17 @@
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    font-family: 'Times New Roman';
+	font-family: 'Times New Roman';
+	flood-color: #800000
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }
 .days-left-widget {
-    border: 5px solid RGB(128, 0, 128);
+    border: 5px solid #808080;
 	float: right;
 	padding: 25px;
-	background-color: #FF00FF;
+	background-color: #C0C0C0;
 	opacity: 0.9;
     border-radius: 05px;
 	transition: 100ms;

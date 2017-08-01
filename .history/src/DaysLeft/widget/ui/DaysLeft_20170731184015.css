@@ -1,4 +1,4 @@
-.button-one{
+.buttonOne{
     background-color:#44c767;
 	-moz-border-radius:24px;
 	-webkit-border-radius:24px;
@@ -13,14 +13,14 @@
 	text-decoration:none;
 	text-shadow:-1px -1px 3px #2f6627;
 }
-.button-one:hover {
+.buttonOne:hover {
 	background-color:#5cbf2a;
 }
-.button-one:active {
+.buttonOne:active {
 	position:relative;
 	top:1px;
 }
-.button-two{
+.buttonTwo{
     background-color:#c62d1f;
 	-moz-border-radius:24px;
 	-webkit-border-radius:24px;
@@ -35,15 +35,15 @@
 	text-decoration:none;
 	text-shadow:-1px -1px 3px #810e05;
 }
-.button-two:hover {
+.buttonTwo:hover {
 	background-color:#f24437;
 }
-.button-two:active { 
+.buttonTwo:active { 
 	position:relative;
 	top:1px;
 }
- .event-name {
-    width: 60%;
+ .Event-Name {
+    width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -52,8 +52,8 @@
     border-radius: 4px;
     box-sizing: border-box;
 }
-.date-of-event {
-    width: 60%;
+.Date-Of-Event {
+    width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -63,15 +63,11 @@
     box-sizing: border-box;
 }
 .days-left-widget {
-    border: 5px solid RGB(128, 0, 128);
-	float: right;
-	padding: 25px;
-	background-color: #FF00FF;
-	opacity: 0.9;
-    border-radius: 05px;
-	transition: 100ms;
-	width: 15%;
-	height: 15%;
+    border: 5px solid red;
+    float: right;
+    padding: 25px;
+    border-radius: 25px;
+    transition: 100ms;
 }
 .set-to-yellow{
 	background-color: #FFFF00;
@@ -80,14 +76,11 @@
 	background-color: #FF0000;
 }
 .set-to-green {
-	background-color: #008000;
+	background-color: #008000
 }
 .set-to-blue {
-	background-color: #0000FF;
+	background-color: #0000FF
 }
 .set-to-purple {
-	background-color: #800080;
-}
-.set-to-white {
-	background-color: #FFFFFF;
+	background-color: #800080
 }
