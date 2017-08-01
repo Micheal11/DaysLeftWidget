@@ -40,11 +40,10 @@ class DaysLeft extends WidgetBase {
         }, this.domNode);
     }
     public computeDays(): number {
-        this.futureDate = (this.insertedDate);
+        this.futureDate = new Date(this.insertedDate);
         // tslint:disable-next-line:max-line-length
         const mendixDate = new Date(this.futureDate.getMonth(), this.futureDate.getDate(), this.futureDate.getFullYear());
         const currentDate = new Date();
-       // alert("current date is : " + currentDate);
         return (this.DatedaysBetween(currentDate, mendixDate));
     }
     private DatedaysBetween(date1: Date, date2: Date): number {
@@ -54,16 +53,19 @@ class DaysLeft extends WidgetBase {
         const differenceInMicrosec = date2Microsec - date1Microsec;
         return Math.ceil(differenceInMicrosec / oneDay);
     }
-
     updateRendering() {
         if (this.contextObject) {
             this.insertedEvent = this.contextObject.get(this.Name).toString();
             const insertedDate = this.contextObject.get(this.DateInserted);
-            const parseDate = Number(insertedDate);
-            this.insertedDate = new Date(parseDate);
-            // alert("my date is : " + this.insertedDate);
-            // const parsedDate = insertedDate TODO apply parsing here
+            const m = insertedDate.toString().match(/(\d\d)(\d\d)(\d\d\d\d)/);
 
+            this.contextObject.fetch("DateInserted", (value: any) => {
+                alert("Person's name is " + value);
+            });
+
+            if (this.DateInserted) {
+                var name = this.DateInserted;
+            }
             // var Date = new Date(contextObj.get(this.mendixDate));
             // this.insertedEvent = this.contextObject.(this.DateInserted).toString();
 

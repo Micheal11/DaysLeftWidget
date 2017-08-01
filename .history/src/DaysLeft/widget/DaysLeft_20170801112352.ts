@@ -8,12 +8,10 @@ import * as dom from "dojo/dom";
 import "./ui/DaysLeft.css";
 
 class DaysLeft extends WidgetBase {
-    DateInserted: any;
-
+    Date: Date;
     Name: string;
     MicroflowToRun: string;
     public Deadline: any;
-    private futureDate: Date;
     private contextObject: mendix.lib.MxObject;
     private input: string;
     private insertedEvent: string;
@@ -34,18 +32,59 @@ class DaysLeft extends WidgetBase {
         logger.debug(this.id + ".resize");
     }
     private customize() {
+        domConstruct.create("input", {
+            class: "event-name",
+            id: "EventName",
+            placeholder: "Enter Your Event",
+            textValue: "Insert any string",
+            type: "text"
+        }, this.domNode);
+        domConstruct.create("div", {
+            innerHTML: "<br/>"
+        }, this.domNode);
+        domConstruct.create("input", {
+            class: "date-of-event",
+            id: "DateName",
+            placeholder: "Choose Your Date",
+            textValue: "Input date",
+            type: "date"
+        }, this.domNode);
+        domConstruct.create("div", {
+            innerHTML: "<br/>"
+        }, this.domNode);
+        domConstruct.create("input", {
+            class: "button-one",
+            id: "showButton",
+            type: "button",
+            value: "Display"
+        }, this.domNode).addEventListener("click", () => {
+            this.display();
+        }, false);
+        domConstruct.create("input", {
+            class: "button-two",
+            type: "button",
+            value: "Cancel"
+        }, this.domNode).addEventListener("click", () => {
+            if (this.MicroflowToRun !== "") {
+                this.ExecuteMicroflow(this.MicroflowToRun, this.contextObject.getGuid());
+            }
+        });
         domConstruct.create("div", {
             class: "days-left-widget",
             id: "dayswidget"
         }, this.domNode);
     }
+    display() {
+        //this.insertedEvent = dom.byId("EventName").value;
+        dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +
+            "</td></tr> <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
+    }
     public computeDays(): number {
-        this.futureDate = (this.insertedDate);
-        // tslint:disable-next-line:max-line-length
-        const mendixDate = new Date(this.futureDate.getMonth(), this.futureDate.getDate(), this.futureDate.getFullYear());
-        const currentDate = new Date();
-       // alert("current date is : " + currentDate);
-        return (this.DatedaysBetween(currentDate, mendixDate));
+        this.insertedDate = this.Date;
+        const futureDate = new Date(this.insertedDate);
+        const mendixDate = new Date(futureDate.getFullYear(), futureDate.getMonth(), futureDate.getDate());
+        const TodayDate = new Date();
+        return (this.DatedaysBetween(TodayDate, futureDate));
     }
     private DatedaysBetween(date1: Date, date2: Date): number {
         const oneDay = 1000 * 60 * 60 * 24;
@@ -54,21 +93,12 @@ class DaysLeft extends WidgetBase {
         const differenceInMicrosec = date2Microsec - date1Microsec;
         return Math.ceil(differenceInMicrosec / oneDay);
     }
-
     updateRendering() {
+        //this.customize();
         if (this.contextObject) {
             this.insertedEvent = this.contextObject.get(this.Name).toString();
-            const insertedDate = this.contextObject.get(this.DateInserted);
-            const parseDate = Number(insertedDate);
-            this.insertedDate = new Date(parseDate);
-            // alert("my date is : " + this.insertedDate);
-            // const parsedDate = insertedDate TODO apply parsing here
-
-            // var Date = new Date(contextObj.get(this.mendixDate));
-            // this.insertedEvent = this.contextObject.(this.DateInserted).toString();
-
             dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +
-                "</td></tr> <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
+            "</td></tr> <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
         } else {
             // comment
         }
@@ -87,13 +117,13 @@ class DaysLeft extends WidgetBase {
                 },
                 params: {
                     applyto: "selection",
-                    guids: [guid]
+                    guids: [ guid ]
                 }
             }, this);
         }
     }
 }
-dojoDeclare("DaysLeft.widget.DaysLeft", [WidgetBase], function (Source: any) {
+dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {

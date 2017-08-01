@@ -8,7 +8,7 @@ import * as dom from "dojo/dom";
 import "./ui/DaysLeft.css";
 
 class DaysLeft extends WidgetBase {
-    DateInserted: any;
+    DateInserted: Date;
 
     Name: string;
     MicroflowToRun: string;
@@ -34,18 +34,17 @@ class DaysLeft extends WidgetBase {
         logger.debug(this.id + ".resize");
     }
     private customize() {
-        domConstruct.create("div", {
+       domConstruct.create("div", {
             class: "days-left-widget",
             id: "dayswidget"
         }, this.domNode);
     }
     public computeDays(): number {
-        this.futureDate = (this.insertedDate);
+        this.futureDate = new Date(this.DateInserted);
         // tslint:disable-next-line:max-line-length
         const mendixDate = new Date(this.futureDate.getMonth(), this.futureDate.getDate(), this.futureDate.getFullYear());
-        const currentDate = new Date();
-       // alert("current date is : " + currentDate);
-        return (this.DatedaysBetween(currentDate, mendixDate));
+        const TodayDate = new Date();
+        return (this.DatedaysBetween(TodayDate, mendixDate));
     }
     private DatedaysBetween(date1: Date, date2: Date): number {
         const oneDay = 1000 * 60 * 60 * 24;
@@ -54,19 +53,13 @@ class DaysLeft extends WidgetBase {
         const differenceInMicrosec = date2Microsec - date1Microsec;
         return Math.ceil(differenceInMicrosec / oneDay);
     }
-
     updateRendering() {
+        // this.customize();
         if (this.contextObject) {
             this.insertedEvent = this.contextObject.get(this.Name).toString();
-            const insertedDate = this.contextObject.get(this.DateInserted);
-            const parseDate = Number(insertedDate);
-            this.insertedDate = new Date(parseDate);
-            // alert("my date is : " + this.insertedDate);
-            // const parsedDate = insertedDate TODO apply parsing here
-
+            // const d = this.contextObject.get(this.DateInserted).toString();
             // var Date = new Date(contextObj.get(this.mendixDate));
             // this.insertedEvent = this.contextObject.(this.DateInserted).toString();
-
             dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +
                 "</td></tr> <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
         } else {
