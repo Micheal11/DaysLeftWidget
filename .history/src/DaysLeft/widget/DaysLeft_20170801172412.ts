@@ -16,6 +16,7 @@ class DaysLeft extends WidgetBase {
     private input: string;
     private insertedEvent: string;
     private insertedDate: Date;
+    private usedCurrentDate: Date;
 
     postCreate() {
         this.customize();
@@ -41,12 +42,13 @@ class DaysLeft extends WidgetBase {
         // tslint:disable-next-line:max-line-length
         const mendixDate = new Date(this.insertedDate.getMonth(), this.insertedDate.getDate(), this.insertedDate.getFullYear());
         const currentDate = new Date();
-        return (this.DatedaysBetween(currentDate, mendixDate));
+        const parsingDate = Number(currentDate);
+        this.usedCurrentDate = new Date(parsingDate);
+        return (this.DatedaysBetween(this.usedCurrentDate, mendixDate));
     }
     private DatedaysBetween(date1: Date, date2: Date): number {
         const oneDay = 1000 * 60 * 60 * 24;
         const date1Microsec = date1.getTime();
-        alert("one day" + date1Microsec);
         const date2Microsec = date2.getTime();
         const differenceInMicrosec = date2Microsec - date1Microsec;
         return Math.ceil(differenceInMicrosec / oneDay);

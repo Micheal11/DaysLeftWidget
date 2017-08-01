@@ -46,7 +46,7 @@ class DaysLeft extends WidgetBase {
     private DatedaysBetween(date1: Date, date2: Date): number {
         const oneDay = 1000 * 60 * 60 * 24;
         const date1Microsec = date1.getTime();
-        alert("one day" + date1Microsec);
+        alert("one day" + oneDay);
         const date2Microsec = date2.getTime();
         const differenceInMicrosec = date2Microsec - date1Microsec;
         return Math.ceil(differenceInMicrosec / oneDay);
