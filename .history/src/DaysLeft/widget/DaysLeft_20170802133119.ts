@@ -41,7 +41,8 @@ class DaysLeft extends WidgetBase {
         }, this.domNode);
     }
     public computeDays(): number {
-        this.mendixDateGot = this.nextDate;
+        // tslint:disable-next-line:max-line-length
+        this.mendixDateGot = this.nextDate;//new Date(this.nextDate.getMonth(), this.nextDate.getDate(), this.nextDate.getFullYear());
         this.currentDate = new Date();
         return (this.DatedaysBetween(this.currentDate, this.mendixDateGot));
     }
@@ -57,6 +58,8 @@ class DaysLeft extends WidgetBase {
         if (this.contextObject) {
             this.insertedEvent = this.contextObject.get(this.Name).toString();
             this.insertedDate = this.contextObject.get(this.DateInserted);
+            // alert(insertedDate);
+            // alert(typeof(insertedDate));
             const parseDate = Number(this.insertedDate);
             this.nextDate = new Date(parseDate);
             dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +

@@ -17,7 +17,7 @@ class DaysLeft extends WidgetBase {
     private insertedEvent: string;
     private insertedDate: any;
     private nextDate: Date;
-    private mendixDateGot: Date;
+    private mendixDate: Date;
     private currentDate: Date;
 
     postCreate() {
@@ -41,9 +41,10 @@ class DaysLeft extends WidgetBase {
         }, this.domNode);
     }
     public computeDays(): number {
-        this.mendixDateGot = this.nextDate;
+        // tslint:disable-next-line:max-line-length
+        this.mendixDate = new Date(this.nextDate.getMonth(), this.nextDate.getDate(), this.nextDate.getFullYear());
         this.currentDate = new Date();
-        return (this.DatedaysBetween(this.currentDate, this.mendixDateGot));
+        return (this.DatedaysBetween(this.currentDate, this.mendixDate));
     }
     private DatedaysBetween(date1: Date, date2: Date): number {
         const oneDay = 1000 * 60 * 60 * 24;
@@ -57,6 +58,8 @@ class DaysLeft extends WidgetBase {
         if (this.contextObject) {
             this.insertedEvent = this.contextObject.get(this.Name).toString();
             this.insertedDate = this.contextObject.get(this.DateInserted);
+            // alert(insertedDate);
+            // alert(typeof(insertedDate));
             const parseDate = Number(this.insertedDate);
             this.nextDate = new Date(parseDate);
             dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +
