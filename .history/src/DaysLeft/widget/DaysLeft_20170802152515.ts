@@ -55,17 +55,18 @@ class DaysLeft extends WidgetBase {
 
     updateRendering() {
         if (this.contextObject) {
-
-            this.insertedEvent = this.contextObject.get(this.Name).toString();
+            if (this.contextObject.get(this.Name) == null) {
+                this.insertedEvent = "";
+            } else {
+                this.insertedEvent = this.contextObject.get(this.Name).toString();
+            }
             this.insertedDate = this.contextObject.get(this.DateInserted);
             const parseDate = Number(this.insertedDate);
             this.nextDate = new Date(parseDate);
             dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +
                 "</td></tr> <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
-            dojoStyle.set(this.domNode, "display", "block");
-
         } else {
-            dojoStyle.set(this.domNode, "display", "none");
+            // comment
         }
     }
 
@@ -82,13 +83,13 @@ class DaysLeft extends WidgetBase {
                 },
                 params: {
                     applyto: "selection",
-                    guids: [ guid ]
+                    guids: [guid]
                 }
             }, this);
         }
     }
 }
-dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {
+dojoDeclare("DaysLeft.widget.DaysLeft", [WidgetBase], function (Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
