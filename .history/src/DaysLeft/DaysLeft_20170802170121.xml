@@ -514,7 +514,7 @@ H1OPqcfU4+px9Tj6nH1OPqcfU4+px9Tj6nH1OAd21PYCP//Z
             <category>Behavior</category>
             <description>This is an entity</description>
         </property>
-        <property key="NameOfEvent" type="attribute" entityProperty="Deadline" required="true" >
+        <property key="NameOfEvent" type="attribute" entityProperty="Deadline" required="false" >
             <caption>Event input</caption>
             <category>Data Source</category>
             <description>This is the name of the event</description>
