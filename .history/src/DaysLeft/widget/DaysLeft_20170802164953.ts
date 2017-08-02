@@ -10,7 +10,10 @@ import "./ui/DaysLeft.css";
 class DaysLeft extends WidgetBase {
     DateInserted: any;
     Name: string;
+    //Deadline: any;
+    //private futureDate: Date;
     private contextObject: mendix.lib.MxObject;
+    //private input: string;
     private insertedEvent: string;
     private insertedDate: any;
     private nextDate: Date;
