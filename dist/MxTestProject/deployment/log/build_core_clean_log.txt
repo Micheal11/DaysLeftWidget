@@ -1,4 +1,4 @@
-Buildfile: E:\Projects\fromGRC\DaysLeftWidget\dist\MxTestProject\deployment\build_core.xml
+Buildfile: E:\Projects\FlockOfBirds\DaysLeftFirstVersion\DaysLeftWidget\dist\MxTestProject\deployment\build_core.xml
 
 clean:
 

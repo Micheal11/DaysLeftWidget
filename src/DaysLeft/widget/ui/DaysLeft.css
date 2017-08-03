@@ -1,10 +1,11 @@
 .days-left-widget {
-    border: 5px solid #808080;
+    border: 5px solid #56ccf2;
 	float: right;
 	padding: 25px;
-	background-color: #C0C0C0;
+	background-color: #56ccf2;
 	opacity: 0.9;
 	font-style: italic;
+	font-style: bold;
 	text-align:center;
 	font-family: 'Raleway', sans-serif;
 	border-radius: 05px;

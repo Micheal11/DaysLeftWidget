@@ -16,7 +16,6 @@ class DaysLeft extends WidgetBase {
     private nextDate: Date;
     private mendixDateGot: Date;
     private currentDate: Date;
-    private tableRow: any;
 
     postCreate() {
         this.customize();
@@ -58,23 +57,17 @@ class DaysLeft extends WidgetBase {
             this.insertedDate = this.contextObject.get(this.DateInserted);
             const parseDate = Number(this.insertedDate);
             this.nextDate = new Date(parseDate);
-            this.htmlTable();
+            dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +
+                "</td></tr> <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
+
+            let row = domConstruct.toDom("<tr><td>bar</td><td>Bar is also good</td></tr>");
+            domConstruct.place(row, "example");
+
             dojoStyle.set(this.domNode, "display", "block");
 
         } else {
             dojoStyle.set(this.domNode, "display", "none");
         }
-    }
-
-    htmlTable() {
-        domConstruct.empty(this.domNode);
-        const leftDays = domConstruct.create("div", {
-            class: "days-left-widget"
-
-        }, this.domNode);
-        const raw1 = domConstruct.create("table", {
-            innerHTML: `<tr>${this.insertedEvent}</tr><br><tr>${this.computeDays()}</tr>`
-        }, leftDays);
     }
 
     private ExecuteMicroflow(mf: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
@@ -90,13 +83,13 @@ class DaysLeft extends WidgetBase {
                 },
                 params: {
                     applyto: "selection",
-                    guids: [ guid ]
+                    guids: [guid]
                 }
             }, this);
         }
     }
 }
-dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {
+dojoDeclare("DaysLeft.widget.DaysLeft", [WidgetBase], function (Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
         if (i !== "constructor" && Source.prototype.hasOwnProperty(i)) {
