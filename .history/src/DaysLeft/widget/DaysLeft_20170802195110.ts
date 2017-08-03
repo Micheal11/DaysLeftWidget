@@ -16,7 +16,6 @@ class DaysLeft extends WidgetBase {
     private nextDate: Date;
     private mendixDateGot: Date;
     private currentDate: Date;
-    private tableRow: object;
 
     postCreate() {
         this.customize();
@@ -60,10 +59,6 @@ class DaysLeft extends WidgetBase {
             dom.byId("dayswidget").innerHTML = "<table><tr><td allign='center'>" + this.insertedEvent +
                 "</td></tr> <tr><td allign='center'>" + this.computeDays() + "</td></tr></table>";
             dojoStyle.set(this.domNode, "display", "block");
-            // this.insertedDate = dom.create("tr", {
-            //     "id": "dayswidget" + this.id
-            // });
-            // domConstruct.place(this.insertedDate, this.domNode);
 
         } else {
             dojoStyle.set(this.domNode, "display", "none");

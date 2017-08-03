@@ -69,17 +69,12 @@
 	padding: 25px;
 	background-color: #C0C0C0;
 	opacity: 0.9;
-	font-style: italic;
-	text-align:center;
-	font-family: 'Raleway', sans-serif;
 	border-radius: 05px;
 	stroke-linecap: square;
-	/*flood-color: #800000;*/
-	text-align: center;
+	flood-color: #800000;
 	transition: 100ms;
 	width: 15%;
 	height: 15%;
-	margin: auto;
 }
 .set-to-yellow{
 	background-color: #FFFF00;

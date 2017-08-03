@@ -74,7 +74,7 @@
 	font-family: 'Raleway', sans-serif;
 	border-radius: 05px;
 	stroke-linecap: square;
-	/*flood-color: #800000;*/
+	flood-color: #800000;
 	text-align: center;
 	transition: 100ms;
 	width: 15%;
