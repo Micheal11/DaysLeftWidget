@@ -24,13 +24,21 @@ class DaysLeft extends WidgetBase {
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
         this.updateRendering();
-
         if (callback) {
             callback();
         }
     }
     resize(box: any) {
         logger.debug(this.id + ".resize");
+    }
+    htmlTable() {
+        domConstruct.empty(this.domNode);
+        const leftDays = domConstruct.create("div", {
+            class: "days-left-widget"
+        }, this.domNode);
+        const raw1 = domConstruct.create("table", {
+            innerHTML: `<tr>${this.insertedEvent}</tr><br><tr>${this.computeDays()}</tr>`
+        }, leftDays);
     }
     private customize() {
         domConstruct.create("div", {
@@ -50,33 +58,18 @@ class DaysLeft extends WidgetBase {
         const differenceInMicrosec = date2Microsec - date1Microsec;
         return Math.ceil(differenceInMicrosec / oneDay);
     }
-
     updateRendering() {
         if (this.contextObject) {
-
             this.insertedEvent = this.contextObject.get(this.NameOfEvent).toString();
             this.insertedDate = this.contextObject.get(this.DateInserted);
             const parseDate = Number(this.insertedDate);
             this.nextDate = new Date(parseDate);
             this.htmlTable();
             dojoStyle.set(this.domNode, "display", "block");
-
         } else {
             dojoStyle.set(this.domNode, "display", "none");
         }
     }
-
-    htmlTable() {
-        domConstruct.empty(this.domNode);
-        const leftDays = domConstruct.create("div", {
-            class: "days-left-widget"
-
-        }, this.domNode);
-        const raw1 = domConstruct.create("table", {
-            innerHTML: `<tr>${this.insertedEvent}</tr><br><tr>${this.computeDays()}</tr>`
-        }, leftDays);
-    }
-
     private ExecuteMicroflow(mf: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
         if (mf && guid) {
             mx.ui.action(mf, {
