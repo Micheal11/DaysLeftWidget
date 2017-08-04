@@ -1,20 +1,19 @@
 ﻿.days-left-widget {
-    border: 5px solid #56ccf2;
-	float: right;
-	padding: 25px;
 	background-color: #56ccf2;
-	opacity: 0.9;
+	border: 5px solid #56ccf2;
+	border-radius: 05px;
+	float: center;
+	font-family: 'Raleway', sans-serif;
 	font-style: italic;
 	font-style: bold;
+	left:auto;
+	margin: 25px;
+	padding: 25px;
+	position:relative;
+	opacity: 0.9;
+	right:auto;
 	text-align:center;
-	font-family: 'Raleway', sans-serif;
-	border-radius: 05px;
-	stroke-linecap: square;
-	text-align: center;
-	transition: 100ms;
-	width: 15%;
-	height: 15%;
-	margin: auto;
+	width: 300%px;
 }
 .set-to-yellow{
 	background-color: #FFFF00;
