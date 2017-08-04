@@ -3,17 +3,16 @@
 	border: 5px solid #56ccf2;
 	border-radius: 05px;
 	float: center;
-	font-family: 'Raleway', sans-serif;
-	font-style: italic;
+	font-family: "Times New Roman", Georgia, Serif;
 	font-style: bold;
 	left:auto;
 	margin: 25px;
 	padding: 25px;
 	position:relative;
 	opacity: 0.9;
-	right:auto;
+	/*right:auto;*/
 	text-align:center;
-	width: 300%px;
+	width: 300%;
 }
 .set-to-yellow{
 	background-color: #FFFF00;
@@ -34,7 +33,16 @@
 	background-color: #FFFFFF;
 }
 .set-to-gold {
-background-color: #D4AF37
+	background-color: #D4AF37;
+	border-radius: 5px;
+	/*font-size: 200%;*/
+	display: block;
+	font-size: 2em;
+	/*-webkit-margin-before: 0.67em;
+	-webkit-margin-after: 0.67em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;*/
+	font-weight: bold;
 }
 
 /*# sourceMappingURL=DaysLeft.css.map*/

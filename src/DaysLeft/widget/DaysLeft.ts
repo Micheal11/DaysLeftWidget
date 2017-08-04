@@ -34,7 +34,7 @@ class DaysLeft extends WidgetBase {
     htmlTable() {
         domConstruct.empty(this.domNode);
         const leftDays = domConstruct.create("div", {
-            class: "days-left-widget",
+            class: "days-left-widget"
         }, this.domNode);
         const raw1 = domConstruct.create("table", {
            id: "setColor",
@@ -42,7 +42,7 @@ class DaysLeft extends WidgetBase {
         }, leftDays);
         if (this.computeDays() < 0) {
             // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr>${this.insertedEvent}</tr><br><tr><td class = "set-to-gold">${this.computeDays()}<td></tr>`;
+            dom.byId("setColor").innerHTML = `<tr><td>${this.insertedEvent}</td></tr><br><tr><td class = "set-to-gold">${this.computeDays()}<td></tr>`;
         }
     }
     private customize() {
