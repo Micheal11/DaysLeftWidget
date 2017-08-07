@@ -530,5 +530,21 @@ H1OPqcfU4+px9Tj6nH1OPqcfU4+px9Tj6nH1OAd21PYCP//Z
                 <attributeType name="DateTime" />
             </attributeTypes>
         </property>
+        <property key="Width" type="attribute" entityProperty="Deadline" required="true" >
+            <caption>Width</caption>
+            <category>Data Source</category>
+            <description>This is the Width of the the widget</description>
+            <attributeTypes>
+                <attributeType name="Integer" />
+            </attributeTypes>
+        </property>
+        <property key="Height" type="attribute" entityProperty="Deadline" required="true" >
+            <caption>Width</caption>
+            <category>Data Source</category>
+            <description>This is the Height of the the widget</description>
+            <attributeTypes>
+                <attributeType name="Integer" />
+            </attributeTypes>
+        </property>
     </properties>
 </widget>
