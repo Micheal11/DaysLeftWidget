@@ -6,7 +6,7 @@
   "author": "Albert and Micheal",
   "copyright": "Flock of Birds",
   "private": true,
-    "devDependencies": {
+  "devDependencies": {
     "@types/big.js": "0.0.31",
     "@types/dojo": "^1.9.35",
     "copy-webpack-plugin": "^4.0.1",
