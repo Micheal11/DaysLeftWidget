@@ -1,0 +1,76 @@
+.buttonOne{
+    background-color:#44c767;
+	-moz-border-radius:24px;
+	-webkit-border-radius:24px;
+	border-radius:24px;
+	border:3px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:"Times New Roman";
+	font-size:16px;
+	padding:5px 15px;
+	text-decoration:none;
+	text-shadow:-1px -1px 3px #2f6627;
+}
+.buttonOne:hover {
+	background-color:#5cbf2a;
+}
+.buttonOne:active {
+	position:relative;
+	top:1px;
+}
+.buttonTwo{
+    background-color:#c62d1f;
+	-moz-border-radius:24px;
+	-webkit-border-radius:24px;
+	border-radius:24px;
+	border:3px solid #d02718;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:"Times New Roman";
+	font-size:16px;
+	padding:5px 15px;
+	text-decoration:none;
+	text-shadow:-1px -1px 3px #810e05;
+}
+.buttonTwo:hover {
+	background-color:#f24437;
+}
+.buttonTwo:active { 
+	position:relative;
+	top:1px;
+}
+ .Event-Name {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    font-family: 'Times New Roman';
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.Date-Of-Event {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    font-family: 'Times New Roman';
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.days-left-widget {
+    /*background-color: #FFFF00;*/
+    border: 5px solid red;
+    float: right;
+    padding: 25px;
+    border-radius: 25px;
+    transition: 100ms;
+   /* font-family: serif;
+    text-align: center;*/
+
+}

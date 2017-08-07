@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="widget.DaysLeft" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>DaysLeft</name>
+    <description>The description of this widget.</description>
+
+     <properties>
+        <property key="Date" type="attribute" entityProperty="Date" >
+            <caption>Date of Event</caption>
+            <category>Data Source</category>
+            <description>The date inserted such that remaining days are computed</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+        <!--<property key="mfToExecute" type="microflow" required="false" defaultValue="">
+            <caption>Microflow</caption>
+            <category>Behavior</category>
+            <description>The microflow to execute on click.</description>
+            <returnType type="Boolean" />
+        </property>
+
+        <property key="reverseEntity" type="entity" required="false" defaultValue="">
+            <caption>Entity</caption>
+            <category>Behavior</category>
+            <description>This is an entity</description>
+        </property>-->
+
+    </properties>
+</widget>
