@@ -1,3 +1,8 @@
 # DaysLeftWidget
-A user inputs  events plus corresponding dates in a mendix form.
-The widget then calculates and returns the number 
+A user inputs  an event plus a corresponding date in a mendix form.
+The widget then calculates and returns the number of days remaining to reach that inserted date.
+
+#Functionality.
+In a mendix application, a user needs to create a form that gets data from an entity comprising of atleast two attributes. Date and eventName are among the attributes that an entity should posses. In the form, a user needs to insert the days left widget which should listen to a grid.
+The user then needs to configure the appropriate data source while dealing with the widget.
+
