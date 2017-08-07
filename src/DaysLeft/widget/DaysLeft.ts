@@ -28,9 +28,6 @@ class DaysLeft extends WidgetBase {
             callback();
         }
     }
-    /*resize(box: any) {
-        logger.debug(this.id + ".resize");
-    }*/
     htmlTable() {
         domConstruct.empty(this.domNode);
         const leftDays = domConstruct.create("div", {

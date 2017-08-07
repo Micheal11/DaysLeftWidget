@@ -17,7 +17,7 @@ build:
       [bnd] # project (project.jar) 39 
 
 BUILD SUCCESSFUL
-Total time: 9 seconds
+Total time: 6 seconds
 
 
 
