@@ -2,7 +2,6 @@
 	background-color: #D4AF37;
 	border: 5px solid #D4AF37;
 	box-shadow:0 0 50px -14px rgba(0,0,0,.8);
-	color:#000000;
 	border-radius: 05px;
 	float: center;
 	font-family: "Times New Roman", Georgia, Serif;
@@ -29,7 +28,7 @@
 	-webkit-margin-end: 0px;
 	font-weight: bold;
 } 
-.set-to-red {
+.set-to-red:hover {
 	background-color: #FF0000;
 	border-radius: 5px;
 	display: block;
@@ -39,6 +38,8 @@
 	-webkit-margin-start: 0px;
 	-webkit-margin-end: 0px;
 	font-weight: bold;
+	text-decoration: underline;
+	transition: 2s;
 }
 .set-to-green {
 	background-color: #008000;
