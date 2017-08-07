@@ -6,3 +6,5 @@ The widget then calculates and returns the number of days remaining to reach tha
 In a mendix application, a user needs to create a form that gets data from an entity comprising of atleast two attributes. Date and eventName are among the attributes that an entity should posses. In the form, a user needs to insert the days left widget which should listen to a grid.
 The user then needs to configure the appropriate data source while dealing with the widget.
 
+#limitations
+The widget can  run on smart phones, tablets and on desktop computers, Users without smart phones can not use the widget since it has some features which are not supported on the ordinary phones.
