@@ -28,6 +28,9 @@ class DaysLeft extends WidgetBase {
             callback();
         }
     }
+    resize(box: any) {
+        logger.debug(this.id + ".resize");
+    }
     htmlTable() {
         domConstruct.empty(this.domNode);
         const leftDays = domConstruct.create("div", {
@@ -35,44 +38,21 @@ class DaysLeft extends WidgetBase {
         }, this.domNode);
         const raw1 = domConstruct.create("table", {
            id: "setColor",
-            innerHTML: `<tr>${this.insertedEvent}</tr><span><br><tr>${this.computeDays()}</span></tr>`
+            // tslint:disable-next-line:max-line-length
+            innerHTML: `<tr>${this.computeDays() }</tr><span><br><tr>${this.insertedEvent}</span></tr>`
         }, leftDays);
         if (this.computeDays() < 0) {
             // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><span><td>${this.insertedEvent}</td></tr><br><tr><td class = "set-to-red">${this.computeDays()}<td></span></tr>`;
+            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-cyan">${this.computeDays() * -1 + " " + "Days Since"}</td></tr><br><tr><td>${this.insertedEvent}<td></tr>`;
         } else if (this.computeDays() <= 50) {
             // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><td>${this.insertedEvent}</td></tr><br><tr><td class = "set-to-green">${this.computeDays()}<td></tr>`;
+            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-red">${this.computeDays() + " " + "Days to"}</td></tr><br><tr><td>${this.insertedEvent}<td></tr>`;
         } else if (this.computeDays() <= 100) {
             // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><td>${this.insertedEvent}</td></tr><br><tr><td class = "set-to-blue">${this.computeDays()}<td></tr>`;
-        } else if (this.computeDays() <= 200) {
-            // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><td>${this.insertedEvent}</td></tr><br><tr><td class = "set-to-purple">${this.computeDays()}<td></tr>`;
-        } else if (this.computeDays() <= 400) {
-            // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><td>${this.insertedEvent}</td></tr><br><tr><td class = "set-to-gold">${this.computeDays()}<td></tr>`;
-        } else if (this.computeDays() <= 600) {
-            // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><td>${this.insertedEvent}</td></tr><br><tr><td class = "set-to-sadleBrown">${this.computeDays()}<td></tr>`;
-        } else if (this.computeDays() <= 800) {
-            // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><td>${this.insertedEvent}</td></tr><br><tr><td class = "set-to-yellow">${this.computeDays()}<td></tr>`;
-        } else if (this.computeDays() <= 1000) {
-            // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><td>${this.insertedEvent}</td></tr><br><tr><td class = "set-to-white">${this.computeDays()}<td></tr>`;
-        } else if (this.computeDays() <= 1500) {
-            // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><td>${this.insertedEvent}</td></tr><br><tr><td class = "set-to-darkCyan">${this.computeDays()}<td></tr>`;
-        } else if (this.computeDays() <= 2000) {
-            // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><td>${this.insertedEvent}</td></tr><br><tr><td class = "set-to-darkRed">${this.computeDays()}<td></tr>`;
-        } else if (this.computeDays() <= 5000) {
-            // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><td>${this.insertedEvent}</td></tr><br><tr><td class = "set-to-clot">${this.computeDays()}<td></tr>`;
+            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-orange">${this.computeDays() + " " + "Days to"}</td></tr><br><tr><td>${this.insertedEvent}<td></tr>`;
         } else {
             // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><td>${this.insertedEvent}</td></tr><br><tr><td class = "set-to-crystalClear">${this.computeDays()}<td></tr>`;
+            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-crystalClear">${this.computeDays() + " " + "Days to"}</td></tr><br><br><tr><td>${this.insertedEvent}<td></tr>`;
         }
     }
     private customize() {
@@ -103,24 +83,6 @@ class DaysLeft extends WidgetBase {
             dojoStyle.set(this.domNode, "display", "block");
         } else {
             dojoStyle.set(this.domNode, "display", "none");
-        }
-    }
-    private ExecuteMicroflow(mf: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
-        if (mf && guid) {
-            mx.ui.action(mf, {
-                callback: (objs: mendix.lib.MxObject) => {
-                    if (cb && typeof cb === "function") {
-                        cb(objs);
-                    }
-                },
-                error: (error) => {
-                    // console.debug(error.description);
-                },
-                params: {
-                    applyto: "selection",
-                    guids: [ guid ]
-                }
-            }, this);
         }
     }
 }

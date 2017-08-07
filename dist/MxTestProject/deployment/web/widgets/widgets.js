@@ -1,1 +1,0 @@
-﻿define(["DaysLeft/widget/DaysLeft"], {});
