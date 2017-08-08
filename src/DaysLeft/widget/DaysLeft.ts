@@ -20,7 +20,6 @@ class DaysLeft extends WidgetBase {
     private currentDate: Date;
     private tableRow: any;
 
-
     postCreate() {
         this.customize();
     }
@@ -38,9 +37,9 @@ class DaysLeft extends WidgetBase {
             id: "mainContainer"
         }, this.domNode);
         const raw1 = domConstruct.create("table", {
-           id: "setColor",
+            id: "setColor",
             // tslint:disable-next-line:max-line-length
-            innerHTML: `<tr>${this.computeDays() }</tr><span><br><tr>${this.insertedEvent}</span></tr>`
+            innerHTML: `<tr>${this.computeDays()}</tr><span><br><tr>${this.insertedEvent}</span></tr>`
         }, leftDays);
         if (this.computeDays() < 0) {
             // tslint:disable-next-line:max-line-length
