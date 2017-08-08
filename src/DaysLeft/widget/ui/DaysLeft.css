@@ -7,7 +7,7 @@
 	float: center;
 	font-family: "Times New Roman", Georgia, Serif;
 	font-style: bold;
-	font-size: 1.2em;
+	font-size: 1.25em; 
 	left:auto;
 	margin: 0 auto;
 	margin-top:2%;
@@ -16,15 +16,15 @@
 	font-weight: bold;
 	opacity: 0.9;
 	/*right:auto;*/
-	text-align:center;
-	/* width: auto; */
-	/* height: auto; */
+	/* text-align:center;
+	 width: 230%;
+	 height: 115%; */
 } 
 .set-to-red {
 	background-color: #8B0000;
 	border-radius: 5px;
 	display: block;
-	font-size: 1.3em;
+	 font-size: 1.35em; 
 	-webkit-margin-before: 0.67em;
 	-webkit-margin-after: 0.67em;
 	-webkit-margin-start: 0px;
@@ -35,7 +35,7 @@
 	background-color: orange;
 	border-radius: 5px;
 	display: block;
-	font-size: 1.3em;
+	font-size: 1.35em;
 	-webkit-margin-before: 0.67em;
 	-webkit-margin-after: 0.67em;
 	-webkit-margin-start: 0px;
@@ -46,7 +46,7 @@
 	background-color: #008000;
 	border-radius: 5px;
 	display: block;
-	font-size: 1.3em;
+	font-size: 1.35em;
 	-webkit-margin-before: 0.67em;
 	-webkit-margin-after: 0.67em;
 	-webkit-margin-start: 0px;
@@ -57,7 +57,7 @@
 	background-color: darkCyan;
 	border-radius: 5px;
 	display: block;
-	font-size: 1.3em;
+	font-size: 1.35em;
 	-webkit-margin-before: 0.67em;
 	-webkit-margin-after: 0.67em;
 	-webkit-margin-start: 0px;
@@ -68,7 +68,7 @@
 	background-color: #BC8F8F;
 	border-radius: 5px;
 	display: block;
-	font-size: 1.3em;
+	font-size: 1.35em;
 	-webkit-margin-before: 0.67em;
 	-webkit-margin-after: 0.67em;
 	-webkit-margin-start: 0px;
@@ -79,7 +79,7 @@
 	background-color: #D4AF37;
 	border-radius: 5px;
 	display: block;
-	font-size: 1.3em;
+	font-size: 1.35em;
 	-webkit-margin-before: 0.67em;
 	-webkit-margin-after: 0.67em;
 	-webkit-margin-start: 0px;
@@ -90,7 +90,7 @@
 	background-color: #159957;
 	border-radius: 5px;
 	display: block;
-	font-size: 1.3em;
+	font-size: 1.35em;
 	-webkit-margin-before: 0.67em;
 	-webkit-margin-after: 0.67em;
 	-webkit-margin-start: 0px;
