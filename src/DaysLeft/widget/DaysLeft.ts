@@ -44,10 +44,13 @@ class DaysLeft extends WidgetBase {
             innerHTML: `<tr>${this.computeDays()}</tr><span><br><tr>${this.insertedEvent}</span></tr>`
         }, leftDays);
 
-        if (this.insertedEvent.length > 20 && this.insertedEvent.includes(" ") === true) {
-            const splitString = this.insertedEvent.split("", 20);
-            const joinString = splitString.join();
-            dom.byId("mainContainer").innerHTML = joinString;
+        if (this.insertedEvent.length > 20 && this.insertedEvent.includes(" ") === false) {
+            // const splitString = this.insertedEvent.split("", 20);
+            // const joinString = splitString.join("");
+            // dom.byId("mainContainer").innerHTML = joinString;
+            dom.byId("setColor").innerHTML = `<tr><td>
+            ${this.computeDays() + " " + "Days to"}</td></tr><br><tr><td>
+            ${(this.insertedEvent.split("", 20)).join("")}<td></tr>`;
         }
 
         if (this.computeDays() < 0) {
