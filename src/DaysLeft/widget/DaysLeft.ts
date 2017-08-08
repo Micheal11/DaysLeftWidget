@@ -13,7 +13,7 @@ class DaysLeft extends WidgetBase {
     width: number;
     height: number;
     private contextObject: mendix.lib.MxObject;
-    private insertedEvent: string;
+    private insertedEvent: any;
     private insertedDate: any;
     private nextDate: Date;
     private mendixDateGot: Date;
@@ -44,9 +44,10 @@ class DaysLeft extends WidgetBase {
             innerHTML: `<tr>${this.computeDays()}</tr><span><br><tr>${this.insertedEvent}</span></tr>`
         }, leftDays);
 
-        if (this.insertedEvent.length > 20) {
-            const splittingString = this.insertedEvent.split("", 20);
-            dom.byId("mainContainer").innerHTML = splittingString.join();
+        if (this.insertedEvent.length > 20 && this.insertedEvent.includes(" ") === true) {
+            const splitString = this.insertedEvent.split("", 20);
+            const joinString = splitString.join();
+            dom.byId("mainContainer").innerHTML = joinString;
         }
 
         if (this.computeDays() < 0) {
