@@ -10,6 +10,8 @@ import "./ui/DaysLeft.css";
 class DaysLeft extends WidgetBase {
     DateInserted: any;
     NameOfEvent: string;
+    width: number;
+    height: number;
     private contextObject: mendix.lib.MxObject;
     private insertedEvent: string;
     private insertedDate: any;
@@ -17,6 +19,7 @@ class DaysLeft extends WidgetBase {
     private mendixDateGot: Date;
     private currentDate: Date;
     private tableRow: any;
+
 
     postCreate() {
         this.customize();
@@ -28,13 +31,11 @@ class DaysLeft extends WidgetBase {
             callback();
         }
     }
-    resize(box: any) {
-        logger.debug(this.id + ".resize");
-    }
     htmlTable() {
         domConstruct.empty(this.domNode);
         const leftDays = domConstruct.create("div", {
-            class: "days-left-widget"
+            class: "days-left-widget",
+            id: "mainContainer"
         }, this.domNode);
         const raw1 = domConstruct.create("table", {
            id: "setColor",
@@ -84,6 +85,8 @@ class DaysLeft extends WidgetBase {
         } else {
             dojoStyle.set(this.domNode, "display", "none");
         }
+        // tslint:disable-next-line:max-line-length
+        dom.byId("mainContainer").setAttribute("style", "width:" + this.width + "px;" + "height:" + this.height + "px;");
     }
 }
 dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {
