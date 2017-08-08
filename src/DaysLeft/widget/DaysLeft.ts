@@ -38,21 +38,24 @@ class DaysLeft extends WidgetBase {
         }, this.domNode);
         const raw1 = domConstruct.create("table", {
             id: "setColor",
-            // tslint:disable-next-line:max-line-length
             innerHTML: `<tr>${this.computeDays()}</tr><span><br><tr>${this.insertedEvent}</span></tr>`
         }, leftDays);
         if (this.computeDays() < 0) {
-            // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-cyan">${this.computeDays() * -1 + " " + "Days Since"}</td></tr><br><tr><td>${this.insertedEvent}<td></tr>`;
+            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-cyan">
+            ${this.computeDays() * -1 + " " + "Days Since"}</td></tr><br><tr>
+            <td>${this.insertedEvent}<td></tr>`;
         } else if (this.computeDays() <= 50) {
-            // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-red">${this.computeDays() + " " + "Days to"}</td></tr><br><tr><td>${this.insertedEvent}<td></tr>`;
+            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-red">
+            ${this.computeDays() + " " + "Days to"}</td></tr><br><tr><td>
+            ${this.insertedEvent}<td></tr>`;
         } else if (this.computeDays() <= 100) {
-            // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-orange">${this.computeDays() + " " + "Days to"}</td></tr><br><tr><td>${this.insertedEvent}<td></tr>`;
+            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-orange">
+            ${this.computeDays() + " " + "Days to"}</td></tr><br><tr><td>
+            ${this.insertedEvent}<td></tr>`;
         } else {
-            // tslint:disable-next-line:max-line-length
-            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-crystalClear">${this.computeDays() + " " + "Days to"}</td></tr><br><br><tr><td>${this.insertedEvent}<td></tr>`;
+            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-crystalClear">
+            ${this.computeDays() + " " + "Days to"}</td></tr><br><br><tr><td>
+            ${this.insertedEvent}<td></tr>`;
         }
     }
     private customize() {
@@ -84,8 +87,8 @@ class DaysLeft extends WidgetBase {
         } else {
             dojoStyle.set(this.domNode, "display", "none");
         }
-        // tslint:disable-next-line:max-line-length
-        dom.byId("mainContainer").setAttribute("style", "width:" + this.width + "px;" + "height:" + this.height + "px;");
+        dom.byId("mainContainer").setAttribute("style",
+        "width:" + this.width + "px;" + "height:" + this.height + "px;");
     }
 }
 dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {
