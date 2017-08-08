@@ -23,6 +23,7 @@ class DaysLeft extends WidgetBase {
     postCreate() {
         this.customize();
     }
+
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
         this.updateRendering();
@@ -30,16 +31,24 @@ class DaysLeft extends WidgetBase {
             callback();
         }
     }
+
     htmlTable() {
         domConstruct.empty(this.domNode);
         const leftDays = domConstruct.create("div", {
             class: "days-left-widget",
             id: "mainContainer"
         }, this.domNode);
+
         const raw1 = domConstruct.create("table", {
             id: "setColor",
             innerHTML: `<tr>${this.computeDays()}</tr><span><br><tr>${this.insertedEvent}</span></tr>`
         }, leftDays);
+
+        if (this.insertedEvent.length > 20) {
+            const splittingString = this.insertedEvent.split("", 20);
+            dom.byId("mainContainer").innerHTML = splittingString.join();
+        }
+
         if (this.computeDays() < 0) {
             dom.byId("setColor").innerHTML = `<tr><td class = "set-to-cyan">
             ${this.computeDays() * -1 + " " + "Days Since"}</td></tr><br><tr>
@@ -58,17 +67,20 @@ class DaysLeft extends WidgetBase {
             ${this.insertedEvent}<td></tr>`;
         }
     }
+
     private customize() {
         domConstruct.create("div", {
             class: "days-left-widget",
             id: "dayswidget"
         }, this.domNode);
     }
+
     public computeDays(): number {
         this.mendixDateGot = this.nextDate;
         this.currentDate = new Date();
         return (this.DatedaysBetween(this.currentDate, this.mendixDateGot));
     }
+
     private DatedaysBetween(date1: Date, date2: Date): number {
         const oneDay = 1000 * 60 * 60 * 24;
         const date1Microsec = date1.getTime();
@@ -76,6 +88,7 @@ class DaysLeft extends WidgetBase {
         const differenceInMicrosec = date2Microsec - date1Microsec;
         return Math.ceil(differenceInMicrosec / oneDay);
     }
+
     updateRendering() {
         if (this.contextObject) {
             this.insertedEvent = this.contextObject.get(this.NameOfEvent).toString();
