@@ -104,6 +104,7 @@ class DaysLeft extends WidgetBase {
         "width:" + this.width + "px;" + "height:" + this.height + "px;");
     }
 }
+
 dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
