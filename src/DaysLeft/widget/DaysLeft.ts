@@ -8,7 +8,7 @@ import * as dom from "dojo/dom";
 import "./ui/DaysLeft.css";
 
 class DaysLeft extends WidgetBase {
-    DateInserted: any;
+    DateInserted: string;
     NameOfEvent: string;
     width: number;
     height: number;
@@ -18,7 +18,6 @@ class DaysLeft extends WidgetBase {
     private nextDate: Date;
     private mendixDateGot: Date;
     private currentDate: Date;
-    private tableRow: any;
 
     postCreate() {
         this.customize();
@@ -32,6 +31,12 @@ class DaysLeft extends WidgetBase {
         }
     }
 
+    computeDays(): number {
+        this.mendixDateGot = this.nextDate;
+        this.currentDate = new Date();
+        return (this.dateDaysBetween(this.currentDate, this.mendixDateGot));
+    }
+
     htmlTable() {
         domConstruct.empty(this.domNode);
         const leftDays = domConstruct.create("div", {
@@ -39,7 +44,7 @@ class DaysLeft extends WidgetBase {
             id: "mainContainer"
         }, this.domNode);
 
-        const raw1 = domConstruct.create("table", {
+        domConstruct.create("table", {
             id: "setColor",
             innerHTML: `<tr>${this.computeDays()}</tr><span><br><tr>${this.insertedEvent}</span></tr>`
         }, leftDays);
@@ -64,10 +69,13 @@ class DaysLeft extends WidgetBase {
             ${this.computeDays() + " " + "Days to"}</td></tr><br><tr><td>
             ${this.insertedEvent}<td></tr>`;
         } else {
-            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-crystalClear">
+            this.setColour("setColor", this.classes);
+        }
+    }
+    private setColour(id: string, className: string) {
+        dom.byId(id).innerHTML = `<tr><td class = "${className}">
             ${this.computeDays() + " " + "Days to"}</td></tr><br><br><tr><td>
             ${this.insertedEvent}<td></tr>`;
-        }
     }
 
     private customize() {
@@ -77,13 +85,7 @@ class DaysLeft extends WidgetBase {
         }, this.domNode);
     }
 
-    public computeDays(): number {
-        this.mendixDateGot = this.nextDate;
-        this.currentDate = new Date();
-        return (this.DatedaysBetween(this.currentDate, this.mendixDateGot));
-    }
-
-    private DatedaysBetween(date1: Date, date2: Date): number {
+    private dateDaysBetween(date1: Date, date2: Date): number {
         const oneDay = 1000 * 60 * 60 * 24;
         const date1Microsec = date1.getTime();
         const date2Microsec = date2.getTime();
@@ -107,6 +109,7 @@ class DaysLeft extends WidgetBase {
     }
 }
 
+// tslint:disable-next-line:only-arrow-functions
 dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
