@@ -19,12 +19,13 @@ class DaysLeft extends WidgetBase {
     private currentDate: Date;
 
     postCreate() {
-        this.customize();
+        
     }
 
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
         this.updateRendering();
+
         if (callback) {
             callback();
         }
