@@ -40,8 +40,7 @@ class DaysLeft extends WidgetBase {
             dojoStyle.set(this.domNode, "display", "none");
         }
         dom.byId("mainContainer").setAttribute("style",
-            "width:" + this.width+ "px;" + "height:" + this.height + "px;")
-        dom.byId("mainContainer").setAttribute("style",
+            "width:" + this.width + "px;" + "height:" + this.height + "px;");
     }
 
     computeDays(): number {
