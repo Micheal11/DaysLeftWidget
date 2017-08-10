@@ -44,5 +44,10 @@
             <category>Appearance</category>
             <description>This is the height of the  widget</description>
         </property>  
+        <property key="backgroundColor" type="string" required="false">
+            <caption>Background Color</caption>
+            <category>Appearance</category>
+            <description>The background color of the widget.</description>
+        </property>
     </properties>
 </widget>

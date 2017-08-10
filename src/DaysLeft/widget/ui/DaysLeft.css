@@ -1,91 +1,58 @@
-.days-left-widget {
-	background-color: wheat;
-	border: 5px solid #D4AF37;
-	box-shadow:0 0 50px -14px rgba(0,0,0,.8);
-	border-radius: 05px;
+.widgetDaysLeft {
+	background-color:#69baf4;
+	border:#69baf4;
+	box-shadow:0 0 80px -14px rgba(0,0,0,.8);
+	border-radius: 5px;
 	float: center;
 	font-family: "Times New Roman", Georgia, Serif;
 	font-style: bold;
-	font-size: 1.25em; 
-	left:auto;
+	font-size: 1.3em;
 	margin: 0 auto;
 	margin-top:2%;
 	padding: 20px;
 	position:relative;
 	font-weight: bold;
 	opacity: 0.9;
+	text-align:center;
 } 
-.set-to-red {
-	background-color: #FF0000;
+.widgetDaysLeftSetToRed {
+	background-color:#f44242;
 	border-radius: 5px;
 	display: block;
-	font-size: 1.35em; 
+	font-size: 1.4em;
 	-webkit-margin-before: 0.67em;
 	-webkit-margin-after: 0.67em;
 	-webkit-margin-start: 0px;
 	-webkit-margin-end: 0px;
 	font-weight: bold;
 }
-.set-to-orange {
+.widgetDaysLeftSetToOrange  {
 	background-color: orange;
 	border-radius: 5px;
 	display: block;
-	font-size: 1.35em;
+	font-size: 1.4em;
 	-webkit-margin-before: 0.67em;
 	-webkit-margin-after: 0.67em;
 	-webkit-margin-start: 0px;
 	-webkit-margin-end: 0px;
 	font-weight: bold;
 }
-.set-to-green {
-	background-color: #008000;
+.widgetDaysLeftSetToGreen {
+	background-color: green;
 	border-radius: 5px;
 	display: block;
-	font-size: 1.35em;
+	font-size: 1.4em;
 	-webkit-margin-before: 0.67em;
 	-webkit-margin-after: 0.67em;
 	-webkit-margin-start: 0px;
 	-webkit-margin-end: 0px;
 	font-weight: bold;
 }
-.set-to-cyan {
+.widgetDaysLeftSetToCyan {
 	background-color: darkCyan;
 	border-radius: 5px;
 	display: block;
-	font-size: 1.35em;
-	-webkit-margin-before: 0.67em;
-	-webkit-margin-after: 0.67em;
-	-webkit-margin-start: 0px;
-	-webkit-margin-end: 0px;
-	font-weight: bold;
-}
-.set-to-rosyBrown {
-	background-color: #BC8F8F;
-	border-radius: 5px;
-	display: block;
-	font-size: 1.35em;
-	-webkit-margin-before: 0.67em;
-	-webkit-margin-after: 0.67em;
-	-webkit-margin-start: 0px;
-	-webkit-margin-end: 0px;
-	font-weight: bold;
-}
-.set-to-gold {
-	background-color: #D4AF37;
-	border-radius: 5px;
-	display: block;
-	font-size: 1.35em;
-	-webkit-margin-before: 0.67em;
-	-webkit-margin-after: 0.67em;
-	-webkit-margin-start: 0px;
-	-webkit-margin-end: 0px;
-	font-weight: bold;
-}
-.set-to-crystalClear {
-	background-color: #159957;
-	border-radius: 5px;
-	display: block;
-	font-size: 1.35em;
+	font-size: 1.4em;
 	-webkit-margin-before: 0.67em;
 	-webkit-margin-after: 0.67em;
 	-webkit-margin-start: 0px;
