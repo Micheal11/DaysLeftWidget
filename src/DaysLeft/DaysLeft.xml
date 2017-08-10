@@ -25,12 +25,12 @@
             </attributeTypes>
         </property>
         <property key="width" type="integer" defaultValue="25"  required="true">
-            <caption>Width in Percentage</caption>
+            <caption>Width</caption>
             <category>Appearance</category>
             <description>This is the width of the widget</description>
         </property>
          <property key="height" type="integer" defaultValue="25" required="true">
-            <caption>Height in Percentage</caption>
+            <caption>Height</caption>
             <category>Appearance</category>
             <description>This is the height of the widget</description>
         </property>

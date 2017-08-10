@@ -51,17 +51,17 @@ class DaysLeft extends WidgetBase {
 
     createDisplay() {
         domConstruct.empty(this.domNode);
-        const leftDays = domConstruct.create("div", { 
+        const leftDays = domConstruct.create("div", {
             id: "mainContainer",
-            innerHtml: `<span>
+            innerHtml: `<div>
                             ${this.computeDays()}
-                        </span><br/>
-                        <span>
-                            'Days to'
-                        </span><br/>
-                        <span>
+                        </div><br/>
+                        <div>
+                           ""
+                        </div><br/>
+                        <div>
                             ${this.insertedEvent}
-                        </span><br/>`
+                        </div><br/>`
         }, this.domNode);
 
         domConstruct.create("div", {
@@ -71,6 +71,7 @@ class DaysLeft extends WidgetBase {
 
         if (this.computeDays() < 0) {
             this.setColour("setColor", "Days Since", "widgetDaysLeftSetToCyan");
+
         } else if (this.computeDays() < 15) {
             this.setColour("setColor", "Days To", "widgetDaysLeftSetToRed");
         } else if (this.computeDays() === 15) {
