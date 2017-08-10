@@ -2,7 +2,7 @@
   "name": "DaysLeft",
   "widgetName": "DaysLeft",
   "version": "0.1.0",
-  "description": "The widget calculates for you the days remaining to reach a given date",
+  "description": "Days left widget returns number of days remaining to reach a given date.",
   "author": "Albert and Micheal",
   "copyright": "Flock of Birds",
   "private": true,
