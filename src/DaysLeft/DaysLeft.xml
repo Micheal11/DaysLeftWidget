@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <widget id="DaysLeft.widget.DaysLeft" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
-<<<<<<< HEAD
     <name>DaysLeft</name>
     <description>Days leftwidget returns number of days remaining to reach a given date.</description>
-=======
-    <name>Days left</name>
-    <description>Days left widget returns number of days remaining to reach a given date.</description>
->>>>>>> 242b12248ed9850a3ecc3b154be477a3fe539430
     <properties>
         <property key="Deadline" type="entity" required="false" defaultValue="">
             <caption>Entity</caption>
@@ -29,7 +24,6 @@
                 <attributeType name="DateTime" />
             </attributeTypes>
         </property>
-<<<<<<< HEAD
         <property key="width" type="integer" defaultValue="25"  required="true">
             <caption>Width</caption>
             <category>Appearance</category>
@@ -40,32 +34,5 @@
             <category>Appearance</category>
             <description>This is the height of the widget</description>
         </property>
-=======
-        <property key="widthInPercentage" type="integer" defaultValue="25">
-            <caption>Width in Percentage</caption>
-            <category>Appearance</category>
-            <description>This is the width of the widget</description>
-        </property>
-         <property key="heightInPercentage" type="integer" defaultValue="25">
-            <caption>Height in Percentage</caption>
-            <category>Appearance</category>
-            <description>This is the height of the widget</description>
-        </property>
-        <property key="widthInPixels" type="integer" defaultValue="300">
-            <caption>Width in pixels</caption>
-            <category>Appearance</category>
-            <description>This is the width of the widget</description>
-        </property>
-         <property key="heightInPixels" type="integer" defaultValue="200">
-            <caption>Height in pixels</caption>
-            <category>Appearance</category>
-            <description>This is the height of the  widget</description>
-        </property>  
-        <property key="backgroundColor" type="string" required="false">
-            <caption>Background Color</caption>
-            <category>Appearance</category>
-            <description>The background color of the widget.</description>
-        </property>
->>>>>>> 242b12248ed9850a3ecc3b154be477a3fe539430
     </properties>
 </widget>
