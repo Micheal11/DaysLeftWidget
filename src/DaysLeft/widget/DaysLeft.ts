@@ -1,9 +1,7 @@
 import * as dojoDeclare from "dojo/_base/declare";
 import * as domConstruct from "dojo/dom-construct";
 import * as WidgetBase from "mxui/widget/_WidgetBase";
-import * as dojoClass from "dojo/dom-class";
 import * as dojoStyle from "dojo/dom-style";
-import * as dojoHtml from "dojo/html";
 import * as dom from "dojo/dom";
 import "./ui/DaysLeft.css";
 
@@ -12,24 +10,28 @@ class DaysLeft extends WidgetBase {
     eventName: string;
     width: number;
     height: number;
+    backgroundColor: string;
+    differentColor: string;
+    otherColor: string;
+    microflowToRun: string;
     private contextObject: mendix.lib.MxObject;
     private insertedEvent: string;
     private nextDate: Date;
     private dateFromMendix: Date;
     private currentDate: Date;
 
+    // tslint:disable-next-line:no-empty
     postCreate() {
-        
     }
 
     update(object: mendix.lib.MxObject, callback?: () => void) {
         this.contextObject = object;
         this.updateRendering();
-
         if (callback) {
             callback();
         }
     }
+
     updateRendering() {
         if (this.contextObject) {
             this.insertedEvent = this.contextObject.get(this.eventName).toString();
@@ -40,8 +42,18 @@ class DaysLeft extends WidgetBase {
         } else {
             dojoStyle.set(this.domNode, "display", "none");
         }
-        dom.byId("mainContainer").setAttribute("style",
-            "width:" + this.width + "px;" + "height:" + this.height + "px;");
+        let hexCode = "";
+        if (this.backgroundColor === "otherColor") {
+            hexCode = this.useDifferentColor();
+        } else {
+            hexCode = "#" + this.backgroundColor.split("").splice(1, 6).join("");
+        }
+        dom.byId("setColor").setAttribute("style", "width:" + this.width + "px;" + "height:" + this.height + "px;" +
+            "background-color: " + hexCode );
+    }
+
+    useDifferentColor() {
+        return this.differentColor;
     }
 
     computeDays(): number {
@@ -52,60 +64,60 @@ class DaysLeft extends WidgetBase {
 
     createDisplay() {
         domConstruct.empty(this.domNode);
-        const leftDays = domConstruct.create("div", {
-            id: "mainContainer",
-            innerHtml: `<div>
-                            ${this.computeDays()}
-                        </div><br/>
-                        <div>
-                           ""
-                        </div><br/>
-                        <div>
-                            ${this.insertedEvent}
-                        </div><br/>`
-        }, this.domNode);
-
         domConstruct.create("div", {
             class: "widgetDaysLeft",
             id: "setColor"
-        }, this.domNode);
-
+        }, this.domNode).addEventListener("onclick", () => {
+            if (this.microflowToRun !== "") {
+                this.ExecuteMicroflow(this.microflowToRun, this.contextObject.getGuid());
+            }
+        });
         if (this.computeDays() < 0) {
-            this.setColour("setColor", "Days Since", "widgetDaysLeftSetToCyan");
-
+            this.setTheColour("setColor", "Days Since", "widgetDaysLeftSetToCyan");
         } else if (this.computeDays() < 15) {
-            this.setColour("setColor", "Days To", "widgetDaysLeftSetToRed");
+            this.setTheColour("setColor", "Days To", "widgetDaysLeftSetToDarkRed");
         } else if (this.computeDays() === 15) {
-            this.setColour("setColor", "Days To", "widgetDaysLeftSetToOrange");
+            this.setTheColour("setColor", "Days To", "widgetDaysLeftSetToOrange");
         } else {
-            this.setColour("setColor", "Days To", "widgetDaysLeftSetToGreen ");
+            this.setTheColour("setColor", "Days To", "widgetDaysLeftSetToGreen ");
         }
     }
-    private setColour(id: string, condition: string, className: string) {
+    private setTheColour(id: string, condition: string, className: string) {
         dom.byId(id).innerHTML = `<div class = "${className}">
                                     ${this.computeDays()}
                                   </div><br/>
-                                  <div>
+                                  <div class="widgetCondition">
                                     ${condition}
                                   </div><br/>
-                                  <div>
+                                  <div class="widgetEvent">
                                     ${this.insertedEvent}
-                                  <div>`;
+                                  </div>`;
     }
-
-    private customize() {
-        domConstruct.create("div", {
-            class: "widgetDaysLeft",
-            id: "dayswidget"
-        }, this.domNode);
-    }
-
     private dateDaysBetween(date1: Date, date2: Date): number {
         const oneDay = 1000 * 60 * 60 * 24;
         const date1Microsec = date1.getTime();
         const date2Microsec = date2.getTime();
         const differenceInMicrosec = date2Microsec - date1Microsec;
         return Math.ceil(differenceInMicrosec / oneDay);
+    }
+
+    private ExecuteMicroflow(mf: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
+        if (mf && guid) {
+            mx.ui.action(mf, {
+                callback: (objs: mendix.lib.MxObject) => {
+                    if (cb && typeof cb === "function") {
+                        cb(objs);
+                    }
+                },
+                error: () => {
+                    // console.debug(error.description);
+                },
+                params: {
+                    applyto: "selection",
+                    guids: [ guid ]
+                }
+            }, this);
+        }
     }
 }
 
