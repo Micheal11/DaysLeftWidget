@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <widget id="DaysLeft.widget.DaysLeft" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
     <name>DaysLeft</name>
-    <description>Days left widget returns the number of days remaining to reach a particular date a user inserts</description>
+    <description>Days leftwidget returns number of days remaining to reach a given date.</description>
     <properties>
         <property key="Deadline" type="entity" required="false" defaultValue="">
             <caption>Entity</caption>
-            <category>Appearance</category>
+            <category>Data Source</category>
             <description>This is an entity</description>
         </property>
-        <property key="DateInserted" type="attribute" entityProperty="Deadline" required="true" >
+        <property key="eventName" type="attribute" entityProperty="Deadline" required="true" >
+            <caption>Event input</caption>
+            <category>Data Source</category>
+            <description>This is the event to occur on the selected date</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+        <property key="dateInserted" type="attribute" entityProperty="Deadline" required="true" >
             <caption>Date Attribute</caption>
             <category>Data Source</category>
             <description>This is the Date of the event</description>
@@ -16,23 +24,38 @@
                 <attributeType name="DateTime" />
             </attributeTypes>
         </property>
-        <property key="NameOfEvent" type="attribute" entityProperty="Deadline" required="true" >
-            <caption>Event input</caption>
-            <category>Data Source</category>
-            <description>This is the name of the event</description>
-            <attributeTypes>
-                <attributeType name="String" />
-            </attributeTypes>
-        </property>
-        <property key="width" type="integer" defaultValue="300"  required="true">
+        <property key="width" type="integer" defaultValue="400"  required="true">
             <caption>Width</caption>
-            <category>Data Source</category>
+            <category>Appearance</category>
             <description>This is the width of the widget</description>
         </property>
-         <property key="height" type="integer" defaultValue="200" required="true">
+         <property key="height" type="integer" defaultValue="300" required="true">
             <caption>Height</caption>
-            <category>Data Source</category>
-            <description>This is the Height of the the widget</description>
+            <category>Appearance</category>
+            <description>This is the height of the widget</description>
+        </property>
+        <property key="microflowToExecute" type="microflow" required="false" defaultValue="">
+            <caption>Microflow</caption>
+            <category>Behavior</category>
+            <description>The microflow to execute on click.</description>
+            <returnType type="Boolean" />
+        </property>
+        <property key="backgroundColor" type="enumeration" defaultValue="x69baf4">
+            <caption>Background Color</caption>
+            <category>Appearance</category>
+            <description>Select your favorite background color</description>
+            <enumerationValues>
+                <enumerationValue key="x69baf4">Light Blue</enumerationValue>
+                <enumerationValue key="x008b8b">Dark Cyan</enumerationValue>
+                <enumerationValue key="xc0c0c0">Silver</enumerationValue>
+                <enumerationValue key="xBE3EC3">Purple</enumerationValue>
+                <enumerationValue key="otherColor">Other Color</enumerationValue>
+            </enumerationValues>
+        </property>
+        <property key="differentColor" type="string" defaultValue="" required="false">
+            <caption>Different Color</caption>
+            <category>Appearance</category>
+            <description>Try a different color, use lower case or a color code</description>
         </property> 
     </properties>
 </widget>

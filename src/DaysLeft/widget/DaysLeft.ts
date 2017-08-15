@@ -1,26 +1,27 @@
 import * as dojoDeclare from "dojo/_base/declare";
 import * as domConstruct from "dojo/dom-construct";
 import * as WidgetBase from "mxui/widget/_WidgetBase";
-import * as dojoClass from "dojo/dom-class";
 import * as dojoStyle from "dojo/dom-style";
-import * as dojoHtml from "dojo/html";
 import * as dom from "dojo/dom";
 import "./ui/DaysLeft.css";
 
 class DaysLeft extends WidgetBase {
-    DateInserted: string;
-    NameOfEvent: string;
+    dateInserted: string;
+    eventName: string;
     width: number;
     height: number;
+    backgroundColor: string;
+    differentColor: string;
+    otherColor: string;
+    microflowToRun: string;
     private contextObject: mendix.lib.MxObject;
-    private insertedEvent: any;
-    private insertedDate: any;
+    private insertedEvent: string;
     private nextDate: Date;
-    private mendixDateGot: Date;
+    private dateFromMendix: Date;
     private currentDate: Date;
 
+    // tslint:disable-next-line:no-empty
     postCreate() {
-        this.customize();
     }
 
     update(object: mendix.lib.MxObject, callback?: () => void) {
@@ -31,60 +32,67 @@ class DaysLeft extends WidgetBase {
         }
     }
 
-    computeDays(): number {
-        this.mendixDateGot = this.nextDate;
-        this.currentDate = new Date();
-        return (this.dateDaysBetween(this.currentDate, this.mendixDateGot));
-    }
-
-    htmlTable() {
-        domConstruct.empty(this.domNode);
-        const leftDays = domConstruct.create("div", {
-            class: "days-left-widget",
-            id: "mainContainer"
-        }, this.domNode);
-
-        domConstruct.create("table", {
-            id: "setColor",
-            innerHTML: `<tr>${this.computeDays()}</tr><span><br><tr>${this.insertedEvent}</span></tr>`
-        }, leftDays);
-
-        if (this.insertedEvent.length > 20 && this.insertedEvent.includes(" ") === false) {
-            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-cyan">
-            ${this.computeDays() + " " + "Days to"}</td></tr><br><tr><td>
-            ${(this.insertedEvent.split("", 20)).join("")}<td></tr>`;
-            this.insertedEvent = this.insertedEvent.split("", 20).join("");
-        }
-
-        if (this.computeDays() < 0) {
-            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-cyan">
-            ${this.computeDays() * -1 + " " + "Days Since"}</td></tr><br><tr>
-            <td>${this.insertedEvent}<td></tr>`;
-        } else if (this.computeDays() <= 50) {
-            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-red">
-            ${this.computeDays() + " " + "Days to"}</td></tr><br><tr><td>
-            ${this.insertedEvent}<td></tr>`;
-        } else if (this.computeDays() <= 100) {
-            dom.byId("setColor").innerHTML = `<tr><td class = "set-to-orange">
-            ${this.computeDays() + " " + "Days to"}</td></tr><br><tr><td>
-            ${this.insertedEvent}<td></tr>`;
+    updateRendering() {
+        if (this.contextObject) {
+            this.insertedEvent = this.contextObject.get(this.eventName).toString();
+            const parseDate = Number(this.contextObject.get(this.dateInserted));
+            this.nextDate = new Date(parseDate);
+            this.createDisplay();
+            dojoStyle.set(this.domNode, "display", "block");
         } else {
-            this.setColour("setColor", this.classes);
+            dojoStyle.set(this.domNode, "display", "none");
+        }
+        let chosenColor = "";
+        if (this.backgroundColor === "otherColor") {
+            chosenColor = this.useDifferentColor();
+        } else {
+            chosenColor = "#" + this.backgroundColor.split("").splice(1, 6).join("");
+        }
+        dom.byId("setColor").setAttribute("style", "width:" + this.width + "px;" + "height:" + this.height + "px;" +
+            "background-color: " + chosenColor );
+    }
+
+    useDifferentColor() {
+        return this.differentColor;
+    }
+
+    computeDays(): number {
+        this.dateFromMendix = this.nextDate;
+        this.currentDate = new Date();
+        return (this.dateDaysBetween(this.currentDate, this.dateFromMendix));
+    }
+
+    createDisplay() {
+        domConstruct.empty(this.domNode);
+        domConstruct.create("div", {
+            class: "widgetDaysLeft",
+            id: "setColor"
+        }, this.domNode).addEventListener("onclick", () => {
+            if (this.microflowToRun !== "") {
+                this.ExecuteMicroflow(this.microflowToRun, this.contextObject.getGuid());
+            }
+        });
+        if (this.computeDays() < 0) {
+            this.setTheColour("setColor", "Days Since", "widgetDaysLeftSetToCyan");
+        } else if (this.computeDays() < 15) {
+            this.setTheColour("setColor", "Days To", "widgetDaysLeftSetToDarkRed");
+        } else if (this.computeDays() === 15) {
+            this.setTheColour("setColor", "Days To", "widgetDaysLeftSetToOrange");
+        } else {
+            this.setTheColour("setColor", "Days To", "widgetDaysLeftSetToGreen ");
         }
     }
-    private setColour(id: string, className: string) {
-        dom.byId(id).innerHTML = `<tr><td class = "${className}">
-            ${this.computeDays() + " " + "Days to"}</td></tr><br><br><tr><td>
-            ${this.insertedEvent}<td></tr>`;
+    private setTheColour(id: string, condition: string, className: string) {
+        dom.byId(id).innerHTML = `<div class = "${className}">
+                                    ${this.computeDays()}
+                                  </div><br/>
+                                  <div class="widgetCondition">
+                                    ${condition}
+                                  </div><br/>
+                                  <div class="widgetEvent">
+                                    ${this.insertedEvent}
+                                  </div>`;
     }
-
-    private customize() {
-        domConstruct.create("div", {
-            class: "days-left-widget",
-            id: "dayswidget"
-        }, this.domNode);
-    }
-
     private dateDaysBetween(date1: Date, date2: Date): number {
         const oneDay = 1000 * 60 * 60 * 24;
         const date1Microsec = date1.getTime();
@@ -93,23 +101,26 @@ class DaysLeft extends WidgetBase {
         return Math.ceil(differenceInMicrosec / oneDay);
     }
 
-    updateRendering() {
-        if (this.contextObject) {
-            this.insertedEvent = this.contextObject.get(this.NameOfEvent).toString();
-            this.insertedDate = this.contextObject.get(this.DateInserted);
-            const parseDate = Number(this.insertedDate);
-            this.nextDate = new Date(parseDate);
-            this.htmlTable();
-            dojoStyle.set(this.domNode, "display", "block");
-        } else {
-            dojoStyle.set(this.domNode, "display", "none");
+    private ExecuteMicroflow(mf: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
+        if (mf && guid) {
+            mx.ui.action(mf, {
+                callback: (objs: mendix.lib.MxObject) => {
+                    if (cb && typeof cb === "function") {
+                        cb(objs);
+                    }
+                },
+                error: () => {
+                    // console.debug(error.description);
+                },
+                params: {
+                    applyto: "selection",
+                    guids: [ guid ]
+                }
+            }, this);
         }
-        dom.byId("mainContainer").setAttribute("style",
-        "width:" + this.width + "px;" + "height:" + this.height + "px;");
     }
 }
 
-// tslint:disable-next-line:only-arrow-functions
 dojoDeclare("DaysLeft.widget.DaysLeft", [ WidgetBase ], function(Source: any) {
     const result: any = {};
     for (const i in Source.prototype) {
