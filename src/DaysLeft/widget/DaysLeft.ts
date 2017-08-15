@@ -44,7 +44,7 @@ class DaysLeft extends WidgetBase {
         }
         let chosenColor = "";
         if (this.backgroundColor === "otherColor") {
-            chosenColor = this.useDifferentColor();
+            chosenColor = this.differentColor;
         } else {
             chosenColor = "#" + this.backgroundColor.split("").splice(1, 6).join("");
         }
@@ -52,9 +52,9 @@ class DaysLeft extends WidgetBase {
             "background-color: " + chosenColor );
     }
 
-    useDifferentColor() {
-        return this.differentColor;
-    }
+    // useDifferentColor() {
+    //     return this.differentColor;
+    // }
 
     computeDays(): number {
         this.dateFromMendix = this.nextDate;
