@@ -52,10 +52,6 @@ class DaysLeft extends WidgetBase {
             "background-color: " + chosenColor );
     }
 
-    // useDifferentColor() {
-    //     return this.differentColor;
-    // }
-
     computeDays(): number {
         this.dateFromMendix = this.nextDate;
         this.currentDate = new Date();
@@ -82,6 +78,7 @@ class DaysLeft extends WidgetBase {
             this.setTheColour("setColor", "Days To", "widgetDaysLeftSetToGreen ");
         }
     }
+
     private setTheColour(id: string, condition: string, className: string) {
         dom.byId(id).innerHTML = `<div class = "${className}">
                                     ${this.computeDays()}
@@ -93,6 +90,7 @@ class DaysLeft extends WidgetBase {
                                     ${this.insertedEvent}
                                   </div>`;
     }
+
     private dateDaysBetween(date1: Date, date2: Date): number {
         const oneDay = 1000 * 60 * 60 * 24;
         const date1Microsec = date1.getTime();
