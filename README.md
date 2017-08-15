@@ -1,7 +1,7 @@
 # DaysLeftWidget
 Return number of days remaining to reach a given date.
 
-# Featueres
+# Features
  Select your preferred color.
  Choose your preferred dimensions.
 
@@ -12,7 +12,7 @@ Return number of days remaining to reach a given date.
  Place the widget in the context of an object that has attributes date, event name.
  Select your preffered dimensions (width and height).
  Select your favorite color.
- Save and launch run your app in a browser.
- Fill in appropriate information in a form.
+ Save and  run your app in a browser.
+ Fill the event name and date in a form. Save your insertion.
  Tap any instance in that form.
  Days left displays at the right side of your browser.

@@ -60,32 +60,19 @@
 .widgetCondition {
 	font-family: "Times New Roman", Georgia, Serif;
 	font-size: 1.45em;
-	animation: rotateWordsFirst 4s linear infinite 4s;
+	animation: dimFontOfLabel 4s linear infinite 4s;
 	animation-delay: 3s;
 }
 .widgetEvent {
 	font-family: "Times New Roman", Georgia, Serif;
 	font-size: 1.8em;
 	text-overflow: ellipsis;
-	animation-name: spinner;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-duration: 3s;
-	transform-style: preserve-3d;
-	text-align:center;
+	animation: dimFontOfLabel 4s linear infinite 4s;
 }
-@keyframes rotateWordsFirst {
+@keyframes dimFontOfLabel {
 	0% { opacity: 1; animation-timing-function: ease-in; height: 0px; }
 	8% { opacity: 1; height: 60px; }
 	19% { opacity: 1; height: 60px; }
 	25% { opacity: 0.3; height: 60px; }
 	100% { opacity: 0.3; }
-}
-@keyframes spinner {
-	from {
-		transform: rotateY(0deg);
-	}
-	to {
-		transform: rotateY(-360deg);
-	}
 }
