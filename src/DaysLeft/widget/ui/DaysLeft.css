@@ -64,16 +64,15 @@
 	animation-delay: 3s;
 }
 .widgetEvent {
-font-family: "Times New Roman", Georgia, Serif;
-font-size: 1.8em;
-text-overflow: ellipsis;
-
-  animation-name: spinner;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-duration: 3s;
-  transform-style: preserve-3d;
-  text-align:center;
+	font-family: "Times New Roman", Georgia, Serif;
+	font-size: 1.8em;
+	text-overflow: ellipsis;
+  	animation-name: spinner;
+  	animation-timing-function: linear;
+  	animation-iteration-count: infinite;
+  	animation-duration: 3s;
+  	transform-style: preserve-3d;
+  	text-align:center;
 }
 @keyframes rotateWordsFirst {
     0% { opacity: 1; animation-timing-function: ease-in; height: 0px; }
