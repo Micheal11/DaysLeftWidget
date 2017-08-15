@@ -3,7 +3,7 @@
     <name>DaysLeft</name>
     <description>Days leftwidget returns number of days remaining to reach a given date.</description>
     <properties>
-        <property key="Deadline" type="entity" required="false" defaultValue="">
+        <property key="Deadline" type="entity" required="false">
             <caption>Entity</caption>
             <category>Data Source</category>
             <description>This is an entity</description>
@@ -24,7 +24,7 @@
                 <attributeType name="DateTime" />
             </attributeTypes>
         </property>
-        <property key="width" type="integer" defaultValue="400"  required="true">
+        <property key="width" type="integer" defaultValue="350"  required="true">
             <caption>Width</caption>
             <category>Appearance</category>
             <description>This is the width of the widget</description>
@@ -34,7 +34,7 @@
             <category>Appearance</category>
             <description>This is the height of the widget</description>
         </property>
-        <property key="microflowToExecute" type="microflow" required="false" defaultValue="">
+        <property key="microflowToExecute" type="microflow" required="false">
             <caption>Microflow</caption>
             <category>Behavior</category>
             <description>The microflow to execute on click.</description>
@@ -52,7 +52,7 @@
                 <enumerationValue key="otherColor">Other Color</enumerationValue>
             </enumerationValues>
         </property>
-        <property key="differentColor" type="string" defaultValue="" required="false">
+        <property key="differentColor" type="string" required="false">
             <caption>Different Color</caption>
             <category>Appearance</category>
             <description>Try a different color, use lower case or a color code</description>
