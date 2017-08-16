@@ -20,8 +20,8 @@ class DaysLeft extends WidgetBase {
     private dateFromMendix: Date;
     private currentDate: Date;
 
-    // tslint:disable-next-line:no-empty
     postCreate() {
+        logger.debug(this.id + ".postCreate");
     }
 
     update(object: mendix.lib.MxObject, callback?: () => void) {
@@ -99,9 +99,9 @@ class DaysLeft extends WidgetBase {
         return Math.ceil(differenceInMicrosec / oneDay);
     }
 
-    private ExecuteMicroflow(mf: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
-        if (mf && guid) {
-            mx.ui.action(mf, {
+    private ExecuteMicroflow(microflow: string, guid: string, cb?: (obj: mendix.lib.MxObject) => void) {
+        if (microflow && guid) {
+            mx.ui.action(microflow, {
                 callback: (objs: mendix.lib.MxObject) => {
                     if (cb && typeof cb === "function") {
                         cb(objs);

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <widget id="DaysLeft.widget.DaysLeft" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
     <name>DaysLeft</name>
-    <description>Days leftwidget returns number of days remaining to reach a given date.</description>
+    <description>Days left widget returns number of days remaining to reach a given date.</description>
     <properties>
-        <property key="Deadline" type="entity" required="false">
+        <property key="Deadline" type="entity" required="true">
             <caption>Entity</caption>
             <category>Data Source</category>
             <description>This is an entity</description>
